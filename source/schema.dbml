@@ -9,6 +9,7 @@ Table progetto [headercolor: #175e7a] {
 	tipo_progetto int [ not null, note: 'Progetto d''esame, Tesi, Ricerca' ]
 	immagine_principale_path varchar(255) [ note: 'Path file immagine principale' ]
 	presentazione_pdf_path varchar(255) [ note: 'Path file PDF presentazione (max 10MB)' ]
+	scheda_tecnica_path varchar(255) [ note: 'Per Musica Elettronica, Percussioni, Regia' ]
 	link_esterno varchar(255) [ note: 'Link esterno al progetto' ]
 	anno int
 	tecnica text
@@ -19,6 +20,8 @@ Table progetto [headercolor: #175e7a] {
 	diritti_copyright_path varchar(255)
 	selezionato boolean [ note: 'Ha passato la selezione' ]
 	vincitore boolean [ note: 'Vincitore finale' ]
+	data_invio datetime [ default: `now()` ]
+	stato_candidatura varchar(50) [ default: Bozza, note: 'Inviata, Accettata, Incompleta' ]
 }
 
 Table studente [headercolor: #175e7a] {
@@ -220,6 +223,19 @@ Table istituzione_sezione [headercolor: #175e7a] {
 	}
 }
 
+Table istituzione_edizione [headercolor: #175e7a] {
+	id_istituzione int
+	id_edizione int
+	referente_nome varchar(255) [ not null ]
+	referente_cognome varchar(255) [ not null ]
+	referente_email varchar(255) [ not null ]
+	referente_telefono varchar(50)
+
+	indexes {
+		(id_istituzione, id_edizione) [ pk ]
+	}
+}
+
 Ref fk_tipologia_id_tipologia_progetto {
 	tipologia.id_tipologia < progetto.tipo_progetto [ delete: no action, update: no action ]
 }
@@ -342,4 +358,12 @@ Ref fk_candidatura_sezione {
 
 Ref fk_candidatura_sottosezione {
 	sottosezione.id_sottosezione < candidatura.id_sottosezione [ delete: no action, update: no action ]
+}
+
+Ref fk_istituzione_edizione_istituzione {
+	istituzione.id_istituzione < istituzione_edizione.id_istituzione [ delete: no action, update: no action ]
+}
+
+Ref fk_istituzione_edizione_edizione {
+	edizione.id_edizione < istituzione_edizione.id_edizione [ delete: no action, update: no action ]
 }
