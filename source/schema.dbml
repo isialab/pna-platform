@@ -1,0 +1,345 @@
+Table progetto [headercolor: #175e7a] {
+	id_progetto int [ pk, increment, unique ]
+	id_edizione int [ not null ]
+	id_istituzione int [ not null ]
+	titolo varchar(255) [ not null, note: 'Nome progetto' ]
+	sottotitolo text [ note: 'Sottotitolo o specifica' ]
+	descrizione text [ not null, note: 'Description/Descrizione completa' ]
+	aspetti_innovativi text [ note: 'Frase riassuntiva aspetti innovativi' ]
+	tipo_progetto int [ not null, note: 'Progetto d''esame, Tesi, Ricerca' ]
+	immagine_principale_path varchar(255) [ note: 'Path file immagine principale' ]
+	presentazione_pdf_path varchar(255) [ note: 'Path file PDF presentazione (max 10MB)' ]
+	link_esterno varchar(255) [ note: 'Link esterno al progetto' ]
+	anno int
+	tecnica text
+	supporti text
+	materiali text
+	dimensioni varchar(100)
+	durata varchar(50)
+	diritti_copyright_path varchar(255)
+	selezionato boolean [ note: 'Ha passato la selezione' ]
+	vincitore boolean [ note: 'Vincitore finale' ]
+}
+
+Table studente [headercolor: #175e7a] {
+	id_studente int [ pk, increment, unique ]
+	nome varchar(100) [ not null ]
+	cognome varchar(100) [ not null ]
+	email varchar(100) [ not null ]
+	anno_accademico varchar(20) [ not null, note: 'Es. 2022/2023' ]
+	corso_anno varchar(50) [ not null, note: 'I anno/II anno/III anno' ]
+	corso_tipologia varchar(50) [ not null, note: 'I livello/II livello' ]
+	corso_accademico varchar(50) [ not null, note: 'Nome del corso accademico' ]
+	ruolo varchar(100) [ note: 'Es. Designer, Performer, Co-autore, Spalla (Teatro)' ]
+	strumento varchar(100) [ note: 'Per gruppi Jazz/Pop' ]
+	liberatoria_firmata boolean [ note: 'Obbligatoria per danzatori/attori aggiunti' ]
+}
+
+Table docente [headercolor: #175e7a] {
+	id_docente int [ pk, increment, unique ]
+	nome varchar(100) [ not null ]
+	cognome varchar(100) [ not null ]
+	email varchar(100) [ not null ]
+	anno_accademico varchar(20) [ not null, note: 'Es. 2022/2023' ]
+	corso_disciplina varchar(50) [ not null, note: 'Nome della disciplina dell''insegnamento' ]
+	corso_tipologia varchar(50) [ not null, note: 'I livello/II livello' ]
+	corso_accademico varchar(50) [ not null, note: 'Nome del corso accademico' ]
+}
+
+Table tipologia [headercolor: #175e7a] {
+	id_tipologia int [ pk, increment, unique ]
+	nome varchar(100) [ not null, note: 'Es. Tesi, Ricerca' ]
+}
+
+Table tag [headercolor: #175e7a] {
+	id_tag int [ pk, increment, unique ]
+	nome varchar(50) [ not null ]
+}
+
+Table partner [headercolor: #175e7a] {
+	id_partner int [ pk, increment, unique ]
+	nome varchar(255) [ not null ]
+}
+
+Table edizione [headercolor: #175e7a] {
+	id_edizione int [ pk, increment, unique ]
+	nome varchar(255) [ not null, note: 'Es. PNA Edizione XVIII' ]
+	anno_accademico varchar(20) [ not null, note: 'Es. 2023/2024' ]
+}
+
+Table istituzione [headercolor: #175e7a] {
+	id_istituzione int [ pk, increment, unique ]
+	nome varchar(255) [ not null, note: 'ISIA, Accademia di Belle Arti, Conservatorio, Accademia Arte Drammatica, Accademia Nazionale di Danza' ]
+}
+
+Table immagine [headercolor: #175e7a] {
+	id_immagine int [ pk, increment, unique ]
+	id_progetto int [ not null, note: 'Riferimento al progetto' ]
+	path_immagine varchar(255) [ not null, note: 'Images for catalogue: TIFF 300dpi, min 25cm' ]
+	ordine int
+
+	Note: 'Max 4 additional images per project / Max 4 immagini aggiuntive per progetto'
+}
+
+Table video [headercolor: #175e7a] {
+	id_video int [ pk, increment, unique ]
+	id_progetto int [ not null ]
+	path_video varchar(255) [ not null, note: 'MP4, 1920x1080, max 2 min' ]
+}
+
+Table link_video [headercolor: #175e7a] {
+	id_link_video int [ pk, increment, unique ]
+	id_progetto int [ not null ]
+	url_video varchar(255) [ not null, note: 'URL completo (https://...)' ]
+}
+
+Table premio [headercolor: #175e7a] {
+	id_premio int [ pk, increment, unique ]
+	id_progetto int [ not null ]
+	riferimento_premio text [ not null, note: 'Riferimenti al premio' ]
+}
+
+Table candidatura [headercolor: #175e7a] {
+	id_candidatura int [ pk, increment, unique ]
+	id_studente int [ not null, note: 'Studente Capofila / Lead Student' ]
+	id_istituzione int [ not null ]
+	id_edizione int [ not null ]
+	id_sezione int [ not null ]
+	id_sottosezione int
+	audio_registrazione_path varchar(255)
+	video_registrazione_path varchar(255)
+	studente_data_nascita date [ not null, note: 'Es. 01/12/2000' ]
+	studente_luogo_nascita varchar(255) [ not null ]
+	studente_nazionalita varchar(100) [ not null, note: 'Es. Italia' ]
+	studente_residenza varchar(255) [ not null ]
+	studente_indirizzo varchar(255) [ not null ]
+	studente_numero_telefonico varchar(50) [ not null, note: 'Es. +39 000000000' ]
+	studente_email varchar(255) [ not null ]
+	referente_nome_cognome varchar(255) [ not null ]
+	referente_email varchar(255) [ not null ]
+	modulo_iscrizione_path varchar(255) [ not null, note: 'Path al modulo di iscrizione' ]
+	testo_path varchar(255)
+	link_video_streaming varchar(255) [ note: 'Obbligatorio per Danza (Vimeo), Jazz, Musica Camera' ]
+	password_video varchar(50) [ note: 'Richiesta per Danza su Vimeo' ]
+	programma_esecutivo text [ note: 'Elenco brani per le varie prove musicali' ]
+	necessita_pianista boolean [ default: false, note: 'Richiesta pianista accompagnatore per Musica' ]
+	scheda_tecnica_path varchar(255) [ note: 'Per Musica Elettronica, Percussioni, Regia' ]
+	data_invio datetime [ default: `now()` ]
+	stato_candidatura varchar(50) [ default: Bozza, note: 'Inviata, Accettata, Incompleta' ]
+}
+
+Table candidatura_studente [headercolor: #175e7a] {
+	id_candidatura int
+	id_studente int
+
+	indexes {
+		(id_candidatura, id_studente) [ pk ]
+	}
+}
+
+Table progetto_studente [headercolor: #175e7a] {
+	id_progetto int
+	id_studente int [ note: 'Mappa il campo Author(s)/Autore/i' ]
+
+	indexes {
+		(id_progetto, id_studente) [ pk ]
+	}
+}
+
+Table progetto_docente [headercolor: #175e7a] {
+	id_progetto int
+	id_docente int [ note: 'Mappa il campo Teacher(s)/Docente/i' ]
+
+	indexes {
+		(id_progetto, id_docente) [ pk ]
+	}
+}
+
+Table progetto_tag [headercolor: #175e7a] {
+	id_progetto int
+	id_tag int
+
+	indexes {
+		(id_progetto, id_tag) [ pk ]
+	}
+}
+
+Table progetto_partner [headercolor: #175e7a] {
+	id_progetto int
+	id_partner int
+
+	indexes {
+		(id_progetto, id_partner) [ pk ]
+	}
+}
+
+Table studente_istituzione [headercolor: #175e7a] {
+	id_studente int [ pk ]
+	id_istituzione int
+
+	indexes {
+		(id_studente, id_istituzione) [ name: 'studente_istituzione_index_5' ]
+	}
+}
+
+Table docente_istituzione [headercolor: #175e7a] {
+	id_docente int [ pk ]
+	id_istituzione int
+
+	indexes {
+		(id_docente, id_istituzione) [ name: 'docente_istituzione_index_6' ]
+	}
+Table sezione [headercolor: #175e7a] {
+	id_sezione int [ pk, increment ]
+	nome varchar(100) [ not null, unique, note: 'Il valore da mostrare nel primo selettore' ]
+	macro_area char(1) [ note: 'A oppure B (opzionale, per raggruppamento visivo)' ]
+}
+
+Table sottosezione [headercolor: #175e7a] {
+	id_sottosezione int [ pk, increment ]
+	id_sezione int [ not null, note: 'FK: usata dal Frontend per filtrare' ]
+	label varchar(255) [ not null, note: 'Es: "Danza - Danza classica"' ]
+	grouping_tag varchar(100) [ note: 'Opzionale: per raggruppare visivamente dentro la select' ]
+}
+
+Table edizione_sezione [headercolor: #175e7a] {
+	id_edizione int
+	id_sezione int
+	
+	indexes {
+		(id_edizione, id_sezione) [ pk ]
+	}
+}
+
+Table istituzione_sezione [headercolor: #175e7a] {
+	id_istituzione int
+	id_sezione int
+	
+	indexes {
+		(id_istituzione, id_sezione) [ pk ]
+	}
+}
+
+Ref fk_tipologia_id_tipologia_progetto {
+	tipologia.id_tipologia < progetto.tipo_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_immagine {
+	progetto.id_progetto < immagine.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_video {
+	progetto.id_progetto < video.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_link_video {
+	progetto.id_progetto < link_video.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_premio {
+	progetto.id_progetto < premio.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_progetto_studente {
+	progetto.id_progetto < progetto_studente.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_studente_id_studente_progetto_studente {
+	studente.id_studente < progetto_studente.id_studente [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_progetto_docente {
+	progetto.id_progetto < progetto_docente.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_docente_id_docente_progetto_docente {
+	docente.id_docente < progetto_docente.id_docente [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_progetto_tag {
+	progetto.id_progetto < progetto_tag.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_tag_id_tag_progetto_tag {
+	tag.id_tag < progetto_tag.id_tag [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_progetto_partner {
+	progetto.id_progetto < progetto_partner.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_partner_id_partner_progetto_partner {
+	partner.id_partner < progetto_partner.id_partner [ delete: no action, update: no action ]
+}
+
+Ref fk_edizione_id_edizione_progetto {
+	edizione.id_edizione < progetto.id_edizione [ delete: no action, update: no action ]
+}
+
+Ref fk_istituzione_id_istituzione_progetto {
+	istituzione.id_istituzione < progetto.id_istituzione [ delete: no action, update: no action ]
+}
+
+Ref fk_studente_id_studente_candidatura {
+	studente.id_studente < candidatura.id_studente [ delete: no action, update: no action ]
+}
+
+Ref fk_istituzione_id_istituzione_candidatura {
+	istituzione.id_istituzione < candidatura.id_istituzione [ delete: no action, update: no action ]
+}
+
+Ref fk_edizione_id_edizione_candidatura {
+	edizione.id_edizione < candidatura.id_edizione [ delete: no action, update: no action ]
+}
+
+Ref fk_candidatura_id_candidatura_candidatura_studente {
+	candidatura.id_candidatura < candidatura_studente.id_candidatura [ delete: no action, update: no action ]
+}
+
+Ref fk_studente_id_studente_candidatura_studente {
+	studente.id_studente < candidatura_studente.id_studente [ delete: no action, update: no action ]
+}
+
+Ref fk_studente_id_studente_studente_istituzione {
+	studente.id_studente < studente_istituzione.id_studente [ delete: no action, update: no action ]
+}
+
+Ref fk_istituzione_id_istituzione_studente_istituzione {
+	istituzione.id_istituzione < studente_istituzione.id_istituzione [ delete: no action, update: no action ]
+}
+
+Ref fk_docente_id_docente_docente_istituzione {
+	docente.id_docente < docente_istituzione.id_docente [ delete: no action, update: no action ]
+}
+
+Ref fk_istituzione_id_istituzione_docente_istituzione {
+	istituzione.id_istituzione < docente_istituzione.id_istituzione [ delete: no action, update: no action ]
+}
+
+Ref fk_sottosezione_sezione {
+	sezione.id_sezione < sottosezione.id_sezione [ delete: no action, update: no action ]
+}
+
+Ref fk_edizione_sezione_edizione {
+	edizione.id_edizione < edizione_sezione.id_edizione [ delete: no action, update: no action ]
+}
+
+Ref fk_edizione_sezione_sezione {
+	sezione.id_sezione < edizione_sezione.id_sezione [ delete: no action, update: no action ]
+}
+
+Ref fk_istituzione_sezione_istituzione {
+	istituzione.id_istituzione < istituzione_sezione.id_istituzione [ delete: no action, update: no action ]
+}
+
+Ref fk_istituzione_sezione_sezione {
+	sezione.id_sezione < istituzione_sezione.id_sezione [ delete: no action, update: no action ]
+}
+
+Ref fk_candidatura_sezione {
+	sezione.id_sezione < candidatura.id_sezione [ delete: no action, update: no action ]
+}
+
+Ref fk_candidatura_sottosezione {
+	sottosezione.id_sottosezione < candidatura.id_sottosezione [ delete: no action, update: no action ]
+}
