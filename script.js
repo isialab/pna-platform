@@ -1,154 +1,177 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('applicationForm');
-    const steps = document.querySelectorAll('.step-content');
-    const indicators = document.querySelectorAll('.step-indicator');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const submitBtn = document.getElementById('submitBtn');
-    
-    let currentStep = 1;
-    const totalSteps = steps.length;
+    // Check if running via file protocol
+    if (window.location.protocol === 'file:') {
+        alert("ATTENZIONE: Stai aprendo il sito come file locale. PHP non può funzionare in questo modo.\n\nDevi avviare un server locale.\nApri il terminale nella cartella del progetto ed esegui:\nphp -S localhost:8000\n\nPoi visita: http://localhost:8000");
+        return;
+    }
 
-    // Initialize
-    updateWizard();
+    // Initialize Bootstrap Italia components
+    // Example: Input fields with floating labels need initialization if added dynamically,
+    // but static ones usually work if structure is correct.
+    // However, we might need to manually trigger some if they don't auto-init.
+    // For now, we rely on the bundle.js auto-init.
 
-    nextBtn.addEventListener('click', () => {
-        if (validateStep(currentStep)) {
-            if (currentStep < totalSteps) {
-                currentStep++;
-                updateWizard();
-            }
-        }
-    });
+    // Check if we are on the registration page
+    const registrationForm = document.getElementById('registrationForm');
+    if (registrationForm) {
+        handleRegistration(registrationForm);
+    }
 
-    prevBtn.addEventListener('click', () => {
-        if (currentStep > 1) {
-            currentStep--;
-            updateWizard();
-        }
-    });
+    // Check if we are on the dashboard page
+    // We check for the sidebar wrapper or a specific dashboard element
+    const sidebarWrapper = document.querySelector('.sidebar-wrapper');
+    if (sidebarWrapper) {
+        handleDashboard();
+    }
+});
 
+function handleRegistration(form) {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (validateStep(currentStep)) {
-            alert('Candidatura inviata con successo! (Simulazione)');
-            // Here you would typically send the data to the backend
-            console.log('Form Data:', new FormData(form));
+
+        // Basic Validation (Bootstrap Italia style)
+        if (!form.checkValidity()) {
+            e.stopPropagation();
+            form.classList.add('was-validated');
+            return;
         }
+
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+
+        if (password !== confirmPassword) {
+            alert('Le password non coincidono!');
+            return;
+        }
+
+        // Collect all form data
+        const formData = new FormData(form);
+        const userProfile = {};
+        formData.forEach((value, key) => {
+            if (key !== 'password' && key !== 'confirm_password') {
+                userProfile[key] = value;
+            }
+        });
+
+        // Send to PHP Backend
+        fetch('api.php?action=register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userProfile),
+        })
+            .then(async response => {
+                const text = await response.text();
+                try {
+                    const data = JSON.parse(text);
+                    if (!response.ok) {
+                        throw new Error(data.message || 'Server error');
+                    }
+                    return data;
+                } catch (e) {
+                    console.error('Server response:', text);
+                    if (text.includes('<?php')) {
+                        throw new Error('PHP non eseguito. Assicurati di usare un server web (es. localhost).');
+                    }
+                    throw new Error('Risposta del server non valida: ' + (e.message || text.substring(0, 50)));
+                }
+            })
+            .then(data => {
+                console.log('Success:', data);
+
+                // Save to localStorage for frontend state management
+                localStorage.setItem('pna_user_profile', JSON.stringify(userProfile));
+                localStorage.setItem('pna_user_name', `${userProfile.nome} ${userProfile.cognome}`);
+
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Errore: ' + error.message);
+            });
     });
+}
 
-    function updateWizard() {
-        // Update Steps Visibility
-        steps.forEach(step => {
-            step.classList.remove('active');
-            if (parseInt(step.id.replace('step', '')) === currentStep) {
-                step.classList.add('active');
-            }
-        });
+function handleDashboard() {
+    // Retrieve user data
+    const userName = localStorage.getItem('pna_user_name');
+    const userProfileString = localStorage.getItem('pna_user_profile');
 
-        // Update Indicators
-        indicators.forEach(indicator => {
-            const stepNum = parseInt(indicator.dataset.step);
-            indicator.classList.remove('active', 'completed');
-            if (stepNum === currentStep) {
-                indicator.classList.add('active');
-            } else if (stepNum < currentStep) {
-                indicator.classList.add('completed');
-            }
-        });
-
-        // Update Buttons
-        prevBtn.disabled = currentStep === 1;
-        
-        if (currentStep === totalSteps) {
-            nextBtn.classList.add('hidden');
-            submitBtn.classList.remove('hidden');
-            populateSummary();
-        } else {
-            nextBtn.classList.remove('hidden');
-            submitBtn.classList.add('hidden');
+    if (userName) {
+        const userNameDisplay = document.getElementById('userNameDisplay');
+        if (userNameDisplay) {
+            userNameDisplay.textContent = userName;
         }
+    } else {
+        // Redirect to login if no user found (simple protection)
+        window.location.href = 'index.html';
+        return;
     }
 
-    function validateStep(step) {
-        const currentStepEl = document.getElementById(`step${step}`);
-        const inputs = currentStepEl.querySelectorAll('input[required], select[required], textarea[required]');
-        let isValid = true;
+    // Navigation Logic
+    const navLinks = document.querySelectorAll('.list-item'); // Bootstrap Italia sidebar links
+    const sections = document.querySelectorAll('.section-content');
+    const pageTitle = document.getElementById('pageTitle');
 
-        inputs.forEach(input => {
-            if (!input.value.trim()) {
-                isValid = false;
-                input.style.borderColor = '#ef4444'; // Red border
-                
-                // Reset border on input
-                input.addEventListener('input', function() {
-                    this.style.borderColor = '';
-                }, { once: true });
-            } else {
-                input.style.borderColor = '';
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            // Add active class to clicked link
+            link.classList.add('active');
+
+            // Hide all sections
+            sections.forEach(section => section.classList.add('hidden'));
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Show target section
+            const sectionId = link.getAttribute('data-section');
+            const targetSection = document.getElementById(`${sectionId}-section`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                targetSection.classList.add('active');
             }
-        });
 
-        if (!isValid) {
-            alert('Per favore, compila tutti i campi obbligatori.');
-        }
-
-        return isValid;
-    }
-
-    function populateSummary() {
-        const summaryProfile = document.getElementById('summary-profile');
-        const summaryCandidacy = document.getElementById('summary-candidacy');
-        const summaryProject = document.getElementById('summary-project');
-
-        // Helper to create summary item
-        const createItem = (label, value) => {
-            return `
-                <div class="summary-item">
-                    <span class="summary-label">${label}:</span>
-                    <span class="summary-value">${value || '-'}</span>
-                </div>
-            `;
-        };
-
-        // Profile Data
-        summaryProfile.innerHTML = `
-            ${createItem('Nome', document.getElementById('nome').value)}
-            ${createItem('Cognome', document.getElementById('cognome').value)}
-            ${createItem('Email', document.getElementById('email').value)}
-            ${createItem('Corso', document.getElementById('corso_accademico').value)}
-        `;
-
-        // Candidacy Data
-        const istituzioneSelect = document.getElementById('istituzione');
-        const sezioneSelect = document.getElementById('sezione');
-        
-        summaryCandidacy.innerHTML = `
-            ${createItem('Istituzione', istituzioneSelect.options[istituzioneSelect.selectedIndex]?.text)}
-            ${createItem('Sezione', sezioneSelect.options[sezioneSelect.selectedIndex]?.text)}
-            ${createItem('Referente', document.getElementById('referente_nome').value)}
-        `;
-
-        // Project Data
-        const tipoProgettoSelect = document.getElementById('tipo_progetto');
-        
-        summaryProject.innerHTML = `
-            ${createItem('Titolo', document.getElementById('titolo_progetto').value)}
-            ${createItem('Tipo', tipoProgettoSelect.options[tipoProgettoSelect.selectedIndex]?.text)}
-            ${createItem('Anno', document.getElementById('anno_progetto').value)}
-        `;
-    }
-
-    // File input custom label update
-    document.querySelectorAll('input[type="file"]').forEach(input => {
-        input.addEventListener('change', function() {
-            const fileName = this.files[0]?.name;
-            const label = this.nextElementSibling;
-            if (fileName) {
-                label.textContent = fileName;
-                label.style.borderColor = 'var(--primary-color)';
-                label.style.color = 'var(--primary-color)';
+            // Update Title
+            if (pageTitle) {
+                pageTitle.textContent = link.querySelector('span').textContent;
             }
         });
     });
-});
+
+    // Populate Profile Data
+    if (userProfileString) {
+        try {
+            const userProfile = JSON.parse(userProfileString);
+
+            // Map profile data to inputs
+            // Note: IDs in dashboard.html are prefixed with 'profile_'
+            for (const [key, value] of Object.entries(userProfile)) {
+                const element = document.getElementById(`profile_${key}`);
+                if (element) {
+                    element.value = value;
+
+                    // Bootstrap Italia: Activate label for pre-filled inputs
+                    const label = document.querySelector(`label[for="profile_${key}"]`);
+                    if (label) {
+                        label.classList.add('active');
+                    }
+                }
+            }
+        } catch (e) {
+            console.error("Error parsing user profile", e);
+        }
+    }
+
+    // New Candidacy Button
+    const newCandidacyBtn = document.getElementById('newCandidacyBtn');
+    if (newCandidacyBtn) {
+        newCandidacyBtn.addEventListener('click', () => {
+            alert('Funzionalità di Nuova Candidatura in arrivo!');
+        });
+    }
+}

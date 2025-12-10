@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Studente - PNA</title>
+    <!-- Bootstrap Italia CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-italia@2.17.0/dist/css/bootstrap-italia.min.css"
+        rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&family=Lora:ital,wght@0,400;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="it-header-wrapper">
+        <div class="it-header-center-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="it-header-center-content-wrapper">
+                            <div class="it-brand-wrapper">
+                                <a href="#">
+                                    <div class="it-brand-text">
+                                        <div class="it-brand-title">PNA</div>
+                                        <div class="it-brand-tagline">Area Studente</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="it-right-zone">
+                                <div class="it-user-wrapper">
+                                    <span class="d-none d-md-block me-3" id="userNameDisplay">Studente</span>
+                                    <a href="index.html" class="btn btn-primary btn-icon btn-full">
+                                        <span class="rounded-icon">
+                                            <svg class="icon icon-primary">
+                                                <use
+                                                    href="https://cdn.jsdelivr.net/npm/bootstrap-italia@2.17.0/dist/svg/sprites.svg#it-user">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="d-none d-lg-block">Esci</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-12 col-lg-3">
+                <div class="sidebar-wrapper">
+                    <div class="sidebar-linklist-wrapper">
+                        <div class="link-list-wrapper">
+                            <ul class="link-list">
+                                <li>
+                                    <a class="list-item active" href="#" data-section="candidacies">
+                                        <span>Le tue Candidature</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="list-item" href="#" data-section="profile">
+                                        <span>Dati Personali</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="list-item" href="#" data-section="projects">
+                                        <span>I tuoi Progetti</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-12 col-lg-9">
+                <h1 class="mb-4" id="pageTitle">Le tue Candidature</h1>
+
+                <!-- Section: Candidacies -->
+                <div id="candidacies-section" class="section-content active">
+                    <div class="alert alert-info" role="alert">
+                        Non hai ancora inviato nessuna candidatura per questa edizione.
+                    </div>
+                    <button id="newCandidacyBtn" class="btn btn-primary">
+                        <svg class="icon icon-white">
+                            <use
+                                href="https://cdn.jsdelivr.net/npm/bootstrap-italia@2.17.0/dist/svg/sprites.svg#it-plus">
+                            </use>
+                        </svg>
+                        Nuova Candidatura
+                    </button>
+                </div>
+
+                <!-- Section: Profile -->
+                <div id="profile-section" class="section-content hidden">
+                    <div class="card-wrapper card-space">
+                        <div class="card card-bg">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" id="profile_nome" disabled>
+                                            <label for="profile_nome" class="active">Nome</label>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" id="profile_cognome" disabled>
+                                            <label for="profile_cognome" class="active">Cognome</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="profile_email" disabled>
+                                        <label for="profile_email" class="active">Email</label>
+                                    </div>
+
+                                    <h6 class="text-uppercase text-muted mt-4 mb-3">Dati Accademici</h6>
+
+                                    <div class="select-wrapper">
+                                        <label for="profile_istituzione">Istituzione</label>
+                                        <select id="profile_istituzione" disabled>
+                                            <option value="">Seleziona Istituzione...</option>
+                                            <option value="1">ISIA</option>
+                                            <option value="2">Accademia di Belle Arti</option>
+                                            <option value="3">Conservatorio</option>
+                                            <option value="4">Accademia Arte Drammatica</option>
+                                            <option value="5">Accademia Nazionale di Danza</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="profile_anno_accademico" disabled>
+                                        <label for="profile_anno_accademico" class="active">Anno Accademico</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="profile_corso_accademico" disabled>
+                                        <label for="profile_corso_accademico" class="active">Corso Accademico</label>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <div class="select-wrapper">
+                                                <label for="profile_corso_tipologia">Tipologia Corso</label>
+                                                <select id="profile_corso_tipologia" disabled>
+                                                    <option value="">Seleziona...</option>
+                                                    <option value="I livello">I livello</option>
+                                                    <option value="II livello">II livello</option>
+                                                    <option value="Ciclo Unico">Ciclo Unico</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="select-wrapper">
+                                                <label for="profile_corso_anno">Anno di Corso</label>
+                                                <select id="profile_corso_anno" disabled>
+                                                    <option value="">Seleziona...</option>
+                                                    <option value="I anno">I anno</option>
+                                                    <option value="II anno">II anno</option>
+                                                    <option value="III anno">III anno</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Projects (Placeholder) -->
+                <div id="projects-section" class="section-content hidden">
+                    <div class="alert alert-warning" role="alert">
+                        Sezione Progetti in costruzione.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Italia JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-italia@2.17.0/dist/js/bootstrap-italia.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
