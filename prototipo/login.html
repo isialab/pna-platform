@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PNA</title>
+
+    <!-- Carbon Web Components (Local) -->
+    <script type="module" src="/libs/load-carbon.js"></script>
+
+    <!-- Custom Swiss Theme -->
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <cds-header aria-label="PNA Platform">
+        <cds-header-menu-button button-label-active="Close menu"
+            button-label-inactive="Open menu"></cds-header-menu-button>
+        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-nav menu-bar-label="PNA Platform">
+            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+        </cds-header-nav>
+    </cds-header>
+
+    <div class="main-container">
+
+        <div class="form-container">
+            <h1 class="page-title">Accedi</h1>
+            <p class="page-subtitle">Accedi per gestire la tua candidatura.</p>
+
+            <form id="loginForm">
+
+                <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                    <cds-text-input label-text="Email" type="email" placeholder="mario.rossi@example.com"
+                        id="login_email" name="email" required></cds-text-input>
+                    <cds-text-input label-text="Password" type="password" id="login_password" name="password"
+                        required></cds-text-input>
+                </div>
+
+                <!-- Actions -->
+                <div style="margin-top: 2rem;">
+                    <cds-button type="submit" style="width: 100%;">Accedi</cds-button>
+                </div>
+
+                <div style="text-align: center; margin-top: 1rem;">
+                    <span style="font-size: 0.875rem;">Non hai un account? <a href="index.html"
+                            style="color: black; font-weight: bold;">Registrati</a></span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script src="assets/script.js"></script>
+
+</body>
+
+</html>

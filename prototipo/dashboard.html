@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PNA</title>
+
+    <!-- Carbon Web Components (Local) -->
+    <script type="module" src="/libs/load-carbon.js"></script>
+
+    <!-- Custom Swiss Theme -->
+    <link rel="stylesheet" href="assets/style.css">
+
+    <!-- Dashboard Specific Styles -->
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        cds-tile {
+            margin-bottom: 1rem;
+            background: white;
+            border: 1px solid black;
+        }
+
+        .data-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #555;
+            margin-bottom: 0.25rem;
+        }
+
+        .data-value {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <cds-header aria-label="PNA Platform">
+        <cds-header-menu-button button-label-active="Close menu"
+            button-label-inactive="Open menu"></cds-header-menu-button>
+        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-nav menu-bar-label="PNA Platform">
+            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+        </cds-header-nav>
+    </cds-header>
+
+    <div class="main-container">
+
+        <h1 class="page-title">Il Tuo Profilo</h1>
+        <p class="page-subtitle">Gestisci la tua iscrizione e visualizza lo stato delle tue candidature.</p>
+
+        <div class="dashboard-grid">
+
+            <!-- Sidebar / Quick Actions -->
+            <div>
+                <cds-tile>
+                    <h3 style="margin-top:0;">Azioni Rapide</h3>
+                    <p style="margin-bottom: 1rem;">Benvenuto nella tua area riservata.</p>
+                    <cds-button href="candidatura.html" style="width: 100%; margin-bottom: 0.5rem;">Nuova
+                        Candidatura</cds-button>
+                    <cds-button kind="secondary" href="profilo.html" style="width: 100%;">Modifica Profilo</cds-button>
+                    <cds-button kind="danger" id="logoutBtn" style="width: 100%; margin-top: 1rem;">Esci</cds-button>
+                </cds-tile>
+            </div>
+
+            <!-- User Data Display -->
+            <div>
+                <cds-tile>
+                    <h3
+                        style="margin-top:0; margin-bottom: 2rem; border-bottom: 2px solid black; padding-bottom: 0.5rem;">
+                        Dati Personali</h3>
+
+                    <div id="userDataContainer">
+                        <p>Caricamento dati...</p>
+                    </div>
+
+                </cds-tile>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/script.js"></script>
+    <script>
+        // Inline script to load user data on dashboard init
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+        });
+    </script>
+
+</body>
+
+</html>

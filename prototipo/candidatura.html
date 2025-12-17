@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidatura - PNA</title>
+
+    <!-- Carbon Web Components (Local) -->
+    <script type="module" src="/libs/load-carbon.js"></script>
+
+    <!-- Custom Swiss Theme -->
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <cds-header aria-label="PNA Platform">
+        <cds-header-menu-button button-label-active="Close menu"
+            button-label-inactive="Open menu"></cds-header-menu-button>
+        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-nav menu-bar-label="PNA Platform">
+            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+        </cds-header-nav>
+    </cds-header>
+
+    <div class="main-container">
+
+        <div class="form-container">
+            <h1 class="page-title">Nuova Candidatura</h1>
+            <p class="page-subtitle">Compila il modulo per inviare la tua candidatura per l'anno accademico corrente.
+            </p>
+
+            <form id="candidaturaForm">
+
+                <!-- Basic Info -->
+                <cds-text-input label-text="Titolo del Progetto" placeholder="Inserisci il titolo..."
+                    id="titolo_progetto" name="titolo_progetto" required></cds-text-input>
+
+                <cds-textarea label-text="Descrizione Breve" placeholder="Descrivi brevemente il tuo progetto..."
+                    id="descrizione" name="descrizione" rows="4"></cds-textarea>
+
+                <br>
+                <cds-select label-text="Categoria" id="categoria" required>
+                    <cds-select-item value="" disabled selected>Seleziona una categoria...</cds-select-item>
+                    <cds-select-item value="musica">Interpretazione Musicale</cds-select-item>
+                    <cds-select-item value="teatro">Arti dello Spettacolo</cds-select-item>
+                    <cds-select-item value="design">Design</cds-select-item>
+                    <cds-select-item value="arti_visive">Arti Visive</cds-select-item>
+                </cds-select>
+
+                <!-- Dynamic Fields Container -->
+                <div id="dynamic-fields-container"
+                    style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;">
+                    <!-- JS will inject Tutorial / Group Members here -->
+                </div>
+
+                <!-- Terms -->
+                <div style="margin: 2rem 0;">
+                    <cds-checkbox label-text="Accetto il regolamento del bando" id="accetto_regolamento"
+                        required></cds-checkbox>
+                </div>
+
+                <!-- Submit -->
+                <cds-button type="submit" style="width: 100%;">Invia Candidatura</cds-button>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script src="assets/script.js"></script>
+
+</body>
+
+</html>

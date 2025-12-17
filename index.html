@@ -4,263 +4,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione Studente - PNA</title>
-    <!-- Custom CSS (Includes Carbon) -->
-    <!-- Carbon Design System CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for IBM Plex Sans (Carbon default) -->
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600,700&display=swap" rel="stylesheet">
+    <title>PNA Project Hub</title>
+
+    <!-- Carbon Web Components (Local) -->
+    <script type="module" src="/libs/load-carbon.js"></script>
+
+    <!-- Custom Swiss Theme -->
+    <link rel="stylesheet" href="prototipo/assets/style.css">
+
+    <style>
+        /* Specific override for the hub layout if needed */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hub-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hub-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .number-tag {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="bx--grid">
-        <!-- Header -->
-        <div class="bx--row custom-header">
-            <div class="bx--col-lg-12">
-                <div class="brand-title">PNA</div>
-                <div class="brand-subtitle">Premio Nazionale delle Arti</div>
-            </div>
-        </div>
+    <!-- Global Header -->
+    <cds-header aria-label="PNA Platform">
+        <cds-header-menu-button button-label-active="Close menu"
+            button-label-inactive="Open menu"></cds-header-menu-button>
+        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-nav menu-bar-label="PNA Platform">
+            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+        </cds-header-nav>
+    </cds-header>
 
-        <!-- Main Content (Centered) -->
-        <div class="bx--row centered-container">
-            <div class="bx--col-lg-10 bx--col-md-8 centered-form-card">
-                <div class="bx--tile">
-                    <h2 class="mb-4">Registrazione Studente</h2>
-                    <p class="bx--label-description mb-4">Compila il form per accedere alla piattaforma.</p>
+    <div class="main-container">
+        <h1 class="page-title">PNA Project Hub</h1>
+        <p class="page-subtitle">Indice generale delle risorse del progetto Premio Nazionale delle Arti.</p>
 
-                    <form id="registrationForm">
-                        <!-- Nome & Cognome -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="nome" class="bx--label">Nome *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="nome" name="nome" type="text" class="bx--text-input" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="cognome" class="bx--label">Cognome *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="cognome" name="cognome" type="text" class="bx--text-input" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="hub-grid">
 
-                        <!-- Email & Telefono -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="email" class="bx--label">Email *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="email" name="email" type="email" class="bx--text-input" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="telefono" class="bx--label">Telefono *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="telefono" name="telefono" type="tel" class="bx--text-input" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Password -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="password" class="bx--label">Password *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="password" name="password" type="password" class="bx--text-input"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="confirm_password" class="bx--label">Conferma Password *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="confirm_password" name="confirm_password" type="password"
-                                            class="bx--text-input" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Matricola & Codice Fiscale -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="matricola" class="bx--label">Matricola *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="matricola" name="matricola" type="text" class="bx--text-input"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="codice_fiscale" class="bx--label">Codice Fiscale *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="codice_fiscale" name="codice_fiscale" type="text"
-                                            class="bx--text-input" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Anagrafica -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="data_nascita" class="bx--label">Data di Nascita *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="data_nascita" name="data_nascita" type="date" class="bx--text-input"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="luogo_nascita" class="bx--label">Luogo di Nascita *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="luogo_nascita" name="luogo_nascita" type="text"
-                                            class="bx--text-input" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Nazionalità & Residenza -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="nazionalita" class="bx--label">Nazionalità *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="nazionalita" name="nazionalita" type="text" class="bx--text-input"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bx--col-lg-8 bx--col-md-4 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="residenza" class="bx--label">Residenza (Città) *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="residenza" name="residenza" type="text" class="bx--text-input"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Indirizzo (Full Width) -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-16 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="indirizzo" class="bx--label">Indirizzo Completo *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="indirizzo" name="indirizzo" type="text" class="bx--text-input"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4 class="margin-top-lg mb-4">Dati Accademici</h4>
-
-                        <!-- Tipologia Istituzione -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-16 mb-4">
-                                <div class="bx--form-item">
-                                    <div class="bx--select">
-                                        <label for="tipologia_istituzione" class="bx--label">Tipologia Istituzione
-                                            *</label>
-                                        <div class="bx--select-input__wrapper">
-                                            <select id="tipologia_istituzione" name="tipologia_istituzione"
-                                                class="bx--select-input" required>
-                                                <option class="bx--select-option" value="" disabled selected>Seleziona
-                                                    Tipologia...</option>
-                                                <!-- Populated via JS -->
-                                            </select>
-                                            <svg focusable="false" preserveAspectRatio="xMidYMid meet"
-                                                style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
-                                                class="bx--select__arrow" width="16" height="16" viewBox="0 0 16 16"
-                                                aria-hidden="true">
-                                                <path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Istituzione -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-16 mb-4">
-                                <div class="bx--form-item">
-                                    <div class="bx--select">
-                                        <label for="istituzione" class="bx--label">Istituzione *</label>
-                                        <div class="bx--select-input__wrapper">
-                                            <select id="istituzione" name="istituzione" class="bx--select-input"
-                                                required disabled>
-                                                <option class="bx--select-option" value="" disabled selected>Seleziona
-                                                    prima la tipologia...</option>
-                                                <!-- Populated via JS -->
-                                            </select>
-                                            <svg focusable="false" preserveAspectRatio="xMidYMid meet"
-                                                style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
-                                                class="bx--select__arrow" width="16" height="16" viewBox="0 0 16 16"
-                                                aria-hidden="true">
-                                                <path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Anno -->
-                        <div class="bx--row">
-                            <div class="bx--col-lg-16 mb-4">
-                                <div class="bx--form-item">
-                                    <label for="anno_accademico" class="bx--label">Anno Accademico (Es. 2024/2025)
-                                        *</label>
-                                    <div class="bx--text-input__field-wrapper">
-                                        <input id="anno_accademico" name="anno_accademico" type="text"
-                                            class="bx--text-input" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Submit -->
-                        <div class="bx--form-item margin-top-lg">
-                            <button class="bx--btn bx--btn--primary" style="width: 100%; justify-content: center;"
-                                type="submit">Registrati</button>
-                        </div>
-
-                        <div class="margin-top-lg" style="text-align: center;">
-                            <p class="bx--label-description">Hai già un account? <a href="#" class="bx--link">Accedi</a>
-                            </p>
-                        </div>
-                    </form>
+            <!-- 1. Prototipo -->
+            <cds-tile class="hub-card">
+                <div>
+                    <div class="number-tag">01</div>
+                    <h3>Prototipo Piattaforma AFAM</h3>
+                    <p style="margin-bottom: 1.5rem;">Simulazione funzionale della piattaforma dedicata agli studenti,
+                        inclusa registrazione, dashboard e candidatura.</p>
                 </div>
-            </div>
+                <cds-button href="prototipo/index.html">Vai al Prototipo</cds-button>
+            </cds-tile>
+
+            <!-- 2. Infografiche -->
+            <cds-tile class="hub-card">
+                <div>
+                    <div class="number-tag">02</div>
+                    <h3>Infografiche</h3>
+                    <p style="margin-bottom: 1.5rem;">Visualizzazioni dati e timeline interattive relative alle scadenze
+                        e agli eventi.</p>
+                </div>
+                <cds-button href="viz/index.html" kind="secondary">Esplora Visualizzazioni</cds-button>
+            </cds-tile>
+
+            <!-- 3. Docs -->
+            <cds-tile class="hub-card">
+                <div>
+                    <div class="number-tag">03</div>
+                    <h3>Documentazione</h3>
+                    <p style="margin-bottom: 1.5rem;">Archivio della documentazione di progetto (File Markdown e risorse
+                        testuali).</p>
+                </div>
+                <cds-button href="docs/" kind="tertiary">Sfoglia Cartella Docs</cds-button>
+            </cds-tile>
+
+            <!-- 4. Data -->
+            <cds-tile class="hub-card">
+                <div>
+                    <div class="number-tag">04</div>
+                    <h3>Dati</h3>
+                    <p style="margin-bottom: 1.5rem;">Accesso diretto ai file dati JSON utilizzati dal sistema.</p>
+                </div>
+                <cds-button href="data/" kind="tertiary">Sfoglia Cartella Data</cds-button>
+            </cds-tile>
+
         </div>
     </div>
 
-    <!-- Carbon Design System Scripts -->
-    <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
-    <!-- Custom Script -->
-    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizzazioni - PNA</title>
+
+    <!-- Carbon Web Components (Local) -->
+    <script type="module" src="/libs/load-carbon.js"></script>
+
+    <!-- Custom Swiss Theme -->
+    <link rel="stylesheet" href="../prototipo/assets/style.css">
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <cds-header aria-label="PNA Platform">
+        <cds-header-menu-button button-label-active="Close menu"
+            button-label-inactive="Open menu"></cds-header-menu-button>
+        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-nav menu-bar-label="PNA Platform">
+            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+        </cds-header-nav>
+    </cds-header>
+
+    <div class="main-container">
+        <h1 class="page-title">Indice Visualizzazioni</h1>
+        <p class="page-subtitle">Raccolta delle infografiche e visualizzazioni dati del progetto.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+
+            <!-- Timeline Card -->
+            <cds-tile>
+                <h3 style="margin-top:0;">Timeline Scadenze</h3>
+                <p style="margin-bottom: 2rem; color: #555;">Visualizzazione interattiva delle scadenze e degli eventi
+                    per le edizioni XVIII e XIX.</p>
+                <cds-button href="viz-scadenze-timeline.html" style="width: 100%;">Apri Timeline</cds-button>
+            </cds-tile>
+
+            <!-- Processo PNA Card -->
+            <cds-tile>
+                <h3 style="margin-top:0;">Processo Standard PNA</h3>
+                <p style="margin-bottom: 2rem; color: #555;">Blueprint del ciclo di vita del progetto, visualizzato come
+                    roadmap annuale.</p>
+                <cds-button href="viz-processo-milestone.html" style="width: 100%;">Apri Processo</cds-button>
+            </cds-tile>
+
+            <!-- More placeholders can go here -->
+            <cds-tile style="background: #f4f4f4; border: 1px dashed #999;">
+                <h3 style="margin-top:0; color: #999;">Nuova Visualizzazione</h3>
+                <p style="margin-bottom: 2rem; color: #999;">In lavorazione...</p>
+                <cds-button disabled style="width: 100%;">Presto disponibile</cds-button>
+            </cds-tile>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

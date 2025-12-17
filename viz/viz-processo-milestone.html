@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processo PNA - Milestones</title>
+
+    <!-- Carbon Web Components (Local) -->
+    <script type="module" src="/libs/load-carbon.js"></script>
+
+    <!-- d3-milestones & d3.js -->
+    <script src="https://unpkg.com/d3@7"></script>
+    <script src="https://unpkg.com/d3-milestones/build/d3-milestones.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/d3-milestones/build/d3-milestones.css">
+
+    <!-- Custom Swiss Theme -->
+    <link rel="stylesheet" href="../prototipo/assets/style.css">
+
+    <style>
+        .viz-container {
+            margin-top: 3rem;
+            /* Space for fixed header */
+            padding: 2rem;
+            max-width: 98%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Custom Swiss styling for d3-milestones */
+        .milestone-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            font-weight: 500 !important;
+        }
+
+        .milestone-year-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+            font-weight: 700 !important;
+        }
+
+        /* Force black and white theme on the timeline */
+        svg {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <cds-header aria-label="PNA Platform">
+        <cds-header-menu-button button-label-active="Close menu"
+            button-label-inactive="Open menu"></cds-header-menu-button>
+        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-nav menu-bar-label="PNA Platform">
+            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+        </cds-header-nav>
+    </cds-header>
+
+    <div class="viz-container">
+        <h1 class="page-title">Processo Standard PNA</h1>
+        <p class="page-subtitle">Visualizzazione del ciclo di vita del progetto (Edizione Tipo).</p>
+
+        <div id="timeline" style="width: 100%; height: 600px;"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('../data/processo.json')
+                .then(response => response.json())
+                .then(data => {
+                    const timelineElement = document.getElementById('timeline');
+                    // Ensure it consumes full width
+                    timelineElement.style.width = '100%';
+
+                    // Use setTimeout as suggested to ensure DOM is ready for label optimization
+                    setTimeout(() => {
+                        milestones('#timeline')
+                            .mapping({
+                                'value': 'step',
+                                'text': 'detail'
+                            })
+                            .scaleType('ordinal')
+                            .optimize(true) // Optimize label placement
+                            .render(data);
+                    }, 0);
+                })
+                .catch(error => console.error('Error loading process data:', error));
+        });
+    </script>
+</body>
+
+</html>

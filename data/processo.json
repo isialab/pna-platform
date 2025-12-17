@@ -1,0 +1,94 @@
+[
+    {
+        "step": "1. Ministero",
+        "detail": "Emanazione del decreto/bando generale con stanziamento fondi e suddivisione in macro-aree (es. Arti Visive/Design vs Arti Performative)."
+    },
+    {
+        "step": "2. Ministero",
+        "detail": "Richiesta di candidature alle Istituzioni AFAM per ospitare le singole sezioni."
+    },
+    {
+        "step": "3. Ministero",
+        "detail": "Valutazione candidature e pubblicazione decreto di assegnazione delle sedi (Istituzioni Designate)."
+    },
+    {
+        "step": "4. Ministero",
+        "detail": "Nomina con decreto delle Giurie Nazionali per ogni sottosezione, composte da esperti esterni."
+    },
+    {
+        "step": "5. Istituzione Designata",
+        "detail": "Accettazione incarico e attivazione canali dedicati (PEC, email dedicata, pagina web)."
+    },
+    {
+        "step": "6. Istituzione Designata",
+        "detail": "Redazione e pubblicazione del Regolamento specifico (Bando di sezione) con repertori, date e specifiche tecniche."
+    },
+    {
+        "step": "7. Istituzione Designata",
+        "detail": "Definizione accordi con partner esterni (Teatri, Orchestre, Fondazioni) per premi accessori e logistica."
+    },
+    {
+        "step": "8. Istituzione Partecipante",
+        "detail": "Pubblicazione interna del bando e avvio procedure selettive (audizioni/valutazione portfolio)."
+    },
+    {
+        "step": "9. Studente",
+        "detail": "Produzione materiali per preselezione (video un-edited, dossier progetti) secondo specifiche."
+    },
+    {
+        "step": "10. Istituzione Partecipante",
+        "detail": "Verifica regolarità iscrizione e selezione dei rappresentanti (limite numerico per istituzione)."
+    },
+    {
+        "step": "11. Istituzione Partecipante",
+        "detail": "Invio candidature via PEC all'Istituzione Designata entro scadenza (moduli, link video, partiture)."
+    },
+    {
+        "step": "12. Istituzione Designata",
+        "detail": "Verifica ammissibilità formale domande (firme, completezza file) ed eventuale richiesta regolarizzazione."
+    },
+    {
+        "step": "13. Commissione",
+        "detail": "Valutazione materiali digitali (Preselezione) e individuazione finalisti."
+    },
+    {
+        "step": "14. Istituzione Designata",
+        "detail": "Pubblicazione elenco ammessi e invio convocazioni con calendario dettagliato prove in presenza."
+    },
+    {
+        "step": "15. Istituzione Designata",
+        "detail": "Allestimento spazi (aule studio, auditorium, mostre) e coordinamento risorse tecniche (pianisti, orchestra)."
+    },
+    {
+        "step": "16. Studente",
+        "detail": "Arrivo in sede (spese viaggio a carico istituzione di provenienza) e registrazione."
+    },
+    {
+        "step": "17. Commissione",
+        "detail": "Riunione preliminare e sorteggio pubblico della lettera per ordine esecuzione."
+    },
+    {
+        "step": "18. Studente",
+        "detail": "Svolgimento prove in presenza (Semifinali/Finali) o allestimento opere."
+    },
+    {
+        "step": "19. Commissione",
+        "detail": "Valutazione performance con facoltà di interruzione."
+    },
+    {
+        "step": "20. Commissione",
+        "detail": "Proclamazione vincitore unico per sottosezione (no ex-aequo)."
+    },
+    {
+        "step": "21. Istituzione Designata",
+        "detail": "Cerimonia di premiazione, Concerto di Gala o Inaugurazione Mostra."
+    },
+    {
+        "step": "22. Istituzione Designata",
+        "detail": "Rendicontazione spese al Ministero entro 60 giorni."
+    },
+    {
+        "step": "23. Studente Vincitore",
+        "detail": "Fruizione premi accessori (borse studio, concerti premio, produzioni)."
+    }
+]

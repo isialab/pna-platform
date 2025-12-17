@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNA Timeline - Scadenze & Eventi</title>
+
+    <!-- Carbon Web Components (Local) -->
+    <script type="module" src="/libs/load-carbon.js"></script>
+
+    <!-- Custom Swiss Theme -->
+    <link rel="stylesheet" href="../prototipo/assets/style.css">
+    <link rel="stylesheet" href="assets/viz-style.css">
+
+    <script src="assets/d3.v7.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <cds-header aria-label="PNA Platform">
+        <cds-header-menu-button button-label-active="Close menu"
+            button-label-inactive="Open menu"></cds-header-menu-button>
+        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-nav menu-bar-label="PNA Platform">
+            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+        </cds-header-nav>
+    </cds-header>
+
+    <div class="main-container" style="max-width: 100%; padding-left: 2rem; padding-right: 2rem;">
+        <h1 class="page-title">Timeline Scadenze</h1>
+
+        <div id="view-selector" class="view-selector">
+            <button class="view-btn active" onclick="switchEdition('XIX')">Edizione XIX (2025)</button>
+            <button class="view-btn" onclick="switchEdition('XVIII')">Edizione XVIII (2024)</button>
+        </div>
+
+        <div id="legend" class="legend"></div>
+
+        <div id="edition-xix" class="edition-container">
+            <h2>Edizione XIX (2025)</h2>
+            <div id="timeline-xix" class="timeline-wrapper"></div>
+            <div class="table-container">
+                <h3>Riepilogo Scadenze</h3>
+                <table id="table-xix" class="data-table">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('xix', 'date')">Data &#8597;</th>
+                            <th onclick="sortTable('xix', 'category')">Categoria &#8597;</th>
+                            <th onclick="sortTable('xix', 'section')">Sezione &#8597;</th>
+                            <th onclick="sortTable('xix', 'institution')">Istituzione &#8597;</th>
+                            <th onclick="sortTable('xix', 'event_type')">Tipo &#8597;</th>
+                            <th>Dettagli</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="edition-xviii" class="edition-container" style="display:none;">
+            <h2>Edizione XVIII (2024)</h2>
+            <div id="timeline-xviii" class="timeline-wrapper"></div>
+            <div class="table-container">
+                <h3>Riepilogo Scadenze</h3>
+                <table id="table-xviii" class="data-table">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('xviii', 'date')">Data &#8597;</th>
+                            <th onclick="sortTable('xviii', 'category')">Categoria &#8597;</th>
+                            <th onclick="sortTable('xviii', 'section')">Sezione &#8597;</th>
+                            <th onclick="sortTable('xviii', 'institution')">Istituzione &#8597;</th>
+                            <th onclick="sortTable('xviii', 'event_type')">Tipo &#8597;</th>
+                            <th>Dettagli</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="tooltip" class="tooltip"></div>
+
+        <script src="assets/viz-script.js"></script>
+
+</body>
+
+</html>

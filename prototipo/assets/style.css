@@ -1,0 +1,151 @@
+/* SWISS WIREFRAME THEME - MINIMALIST B&W + ACCENT */
+
+:root {
+    /* PALETTE */
+    --swiss-black: #000000;
+    --swiss-white: #ffffff;
+    --swiss-accent: #000000;
+    /* Monochrome */
+
+    /* CARBON OVERRIDES */
+    --cds-interactive-01: var(--swiss-black);
+    --cds-interactive-02: var(--swiss-black);
+    --cds-interactive-03: var(--swiss-white);
+    --cds-interactive-04: var(--swiss-accent);
+    /* Selected */
+
+    --cds-ui-background: var(--swiss-white);
+    --cds-ui-01: var(--swiss-white);
+    --cds-ui-02: var(--swiss-white);
+    --cds-ui-03: var(--swiss-black);
+    /* Borders */
+    --cds-ui-04: var(--swiss-black);
+    --cds-ui-05: var(--swiss-black);
+
+    --cds-text-01: var(--swiss-black);
+    --cds-text-02: var(--swiss-black);
+    --cds-text-03: #666666;
+
+    --cds-link-01: var(--swiss-accent);
+    --cds-inverse-01: var(--swiss-white);
+    --cds-icon-01: var(--swiss-black);
+
+    --cds-focus: var(--swiss-accent);
+
+    /* FORMS */
+    --cds-field-01: var(--swiss-white);
+    --cds-field-02: var(--swiss-white);
+
+    /* TYPOGRAPHY */
+    --cds-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --cds-body-long-01-font-family: var(--cds-font-family);
+
+    /* LAYOUT */
+    --cds-grid-gutter: 2rem;
+
+    /* SHAPE */
+    --cds-border-radius: 0px;
+}
+
+body {
+    background-color: var(--swiss-white);
+    color: var(--swiss-black);
+    font-family: var(--cds-font-family);
+    margin: 0;
+}
+
+/* HEADER: Minimalist Wireframe */
+cds-header {
+    --cds-ui-01: #ffffff;
+    /* White bg */
+    border-bottom: 2px solid #000000;
+    --cds-text-01: #000000;
+}
+
+cds-header-name,
+cds-header-nav-item {
+    color: #000000 !important;
+    font-weight: 700;
+}
+
+/* BUTTONS */
+cds-button {
+    --cds-button-primary: #000000;
+    --cds-button-primary-hover: #ff3333;
+    /* Accent on hover */
+    border-radius: 0px !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* FORMS - Strict Wireframe Borders on Parts */
+cds-text-input,
+cds-textarea,
+cds-select,
+cds-dropdown,
+cds-combo-box {
+    margin-bottom: 2rem;
+    --cds-field-01: #ffffff;
+    --cds-text-01: #000000;
+
+    /* Enforce Carbon Variables for Borders */
+    --cds-border-subtle: #000000;
+    /* Default Border */
+    --cds-border-strong: #000000;
+    /* Strong Border */
+    --cds-field-hover-border: #000000;
+    --cds-focus: #000000;
+}
+
+/* Text Inputs & Textareas */
+cds-text-input::part(input),
+cds-textarea::part(textarea) {
+    border: 1px solid #000000 !important;
+    /* Use box-shadow to guarantee visibility if border-collapse/sizing eats it */
+    box-shadow: 0 0 0 1px #000000 inset !important;
+    border-radius: 0px !important;
+    background-color: #ffffff !important;
+    padding-left: 1rem;
+    min-height: 3rem;
+    /* Ensure consistent height */
+}
+
+/* Selects & Dropdowns */
+cds-select::part(button),
+cds-dropdown::part(button) {
+    border: 1px solid #000000 !important;
+    box-shadow: 0 0 0 1px #000000 inset !important;
+    border-radius: 0px !important;
+    background-color: #ffffff !important;
+    min-height: 3rem;
+    color: #000000 !important;
+}
+
+/* UTILITIES */
+.page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    color: #000000;
+    margin-bottom: 3rem;
+}
+
+.main-container {
+    padding: 6rem 2rem 4rem 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.form-container {
+    max-width: 40rem;
+    padding: 2rem;
+    border: 1px solid #000000;
+    /* Wireframe box for form */
+}
