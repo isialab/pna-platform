@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Processo PNA - Milestones</title>
+    <title>Processo PNA - Swimlane</title>
 
     <!-- Carbon Web Components (Local) -->
     <script type="module" src="../libs/load-carbon.js"></script>
 
-    <!-- d3-milestones & d3.js -->
+    <!-- D3.js -->
     <script src="https://unpkg.com/d3@7"></script>
-    <script src="https://unpkg.com/d3-milestones/build/d3-milestones.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/d3-milestones/build/d3-milestones.css">
 
     <!-- Custom Swiss Theme -->
     <link rel="stylesheet" href="../prototipo/assets/style.css">
@@ -20,27 +18,120 @@
     <style>
         .viz-container {
             margin-top: 3rem;
-            /* Space for fixed header */
             padding: 2rem;
-            max-width: 98%;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
+            box-sizing: border-box;
+            background: #fff;
         }
 
-        /* Custom Swiss styling for d3-milestones */
-        .milestone-label {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            font-weight: 500 !important;
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
         }
 
-        .milestone-year-label {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            font-weight: 700 !important;
+        .page-subtitle {
+            font-size: 1rem;
+            color: #525252;
+            max-width: 800px;
+            margin-bottom: 2rem;
         }
 
-        /* Force black and white theme on the timeline */
-        svg {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        /* Swimlane Styles */
+        .lane-line {
+            stroke: #e0e0e0;
+            stroke-width: 1px;
+            stroke-dasharray: 4;
+        }
+
+        .lane-label {
+            font-size: 14px;
+            font-weight: 600;
+            fill: #161616;
+            text-anchor: end;
+            dominant-baseline: middle;
+            font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .connection-path {
+            fill: none;
+            stroke: #161616;
+            stroke-width: 2px;
+            opacity: 0.6;
+        }
+
+        .node-circle {
+            fill: #fff;
+            stroke: #161616;
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .node-circle:hover {
+            fill: #161616;
+            r: 10;
+        }
+
+        .node-circle.active {
+            fill: #161616;
+            r: 10;
+            stroke: #0f62fe;
+            /* IBM Blue */
+        }
+
+        .node-label {
+            font-size: 11px;
+            font-weight: bold;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            pointer-events: none;
+            fill: #000;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .node-circle:hover+.node-label,
+        .node-circle.active+.node-label {
+            fill: #fff;
+        }
+
+        /* Detail Panel */
+        #detail-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            border-top: 4px solid #0f62fe;
+            padding: 2rem;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.38, 0.9);
+            z-index: 9000;
+            height: 200px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        #detail-panel.visible {
+            transform: translateY(0%);
+        }
+
+        .detail-step-number {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #0f62fe;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-content {
+            font-size: 1.5rem;
+            font-weight: 300;
+            max-width: 1200px;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -51,44 +142,222 @@
     <cds-header aria-label="PNA Platform">
         <cds-header-menu-button button-label-active="Close menu"
             button-label-inactive="Open menu"></cds-header-menu-button>
-        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-name href="../index.html" prefix="PNA">Platform</cds-header-name>
         <cds-header-nav menu-bar-label="PNA Platform">
-            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
-            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
-            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
-            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+            <cds-header-nav-item href="../prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="../viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="../docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="../data/">Data</cds-header-nav-item>
         </cds-header-nav>
     </cds-header>
 
     <div class="viz-container">
         <h1 class="page-title">Processo Standard PNA</h1>
-        <p class="page-subtitle">Visualizzazione del ciclo di vita del progetto (Edizione Tipo).</p>
+        <p class="page-subtitle">Flusso delle attività suddiviso per attore coinvolto (Swimlanes).</p>
 
-        <div id="timeline" style="width: 100%; height: 600px;"></div>
+        <!-- Chart Container -->
+        <div id="chart-area" style="width: 100%;"></div>
     </div>
+
+    <!-- Popover Container -->
+    <!-- Positioned absolutely. 'open' attribute controls visibility. -->
+    <cds-popover id="detail-popover" high-contrast style="position: absolute; z-index: 9000;">
+        <cds-popover-content>
+            <div style="padding: 12px; max-width: 320px; background-color: #393939; color: white;">
+                <p id="popover-title"
+                    style="font-weight: 700; margin-bottom: 0.5rem; color: inherit; font-size: 0.875rem;">
+                    STEP</p>
+                <p id="popover-desc" style="font-size: 1rem; color: inherit; line-height: 1.4; font-weight: 300;">Detail
+                </p>
+            </div>
+        </cds-popover-content>
+    </cds-popover>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
+            // 1. Data Processing
             fetch('../data/processo.json')
                 .then(response => response.json())
-                .then(data => {
-                    const timelineElement = document.getElementById('timeline');
-                    // Ensure it consumes full width
-                    timelineElement.style.width = '100%';
+                .then(rawData => {
 
-                    // Use setTimeout as suggested to ensure DOM is ready for label optimization
-                    setTimeout(() => {
-                        milestones('#timeline')
-                            .mapping({
-                                'value': 'step',
-                                'text': 'detail'
-                            })
-                            .scaleType('ordinal')
-                            .optimize(true) // Optimize label placement
-                            .render(data);
-                    }, 0);
+                    // Parse data
+                    const data = rawData.map((d, i) => {
+                        return {
+                            id: i,
+                            originalStep: d.step + ". " + d.actor,
+                            stepNumber: d.step,
+                            actor: d.actor,
+                            detail: d.detail
+                        };
+                    });
+
+                    // Unique Actors
+                    const actors = [...new Set(data.map(d => d.actor))];
+
+                    // 2. Setup Dimensions
+                    const container = document.getElementById('chart-area');
+                    const width = container.clientWidth;
+                    const laneHeight = 100; // More breathing room
+                    const margin = { top: 50, right: 100, bottom: 50, left: 200 }; // Left margin for actor labels
+                    const height = (actors.length * laneHeight) + margin.top + margin.bottom;
+
+                    // 3. Creates SVG
+                    const svg = d3.select("#chart-area")
+                        .append("svg")
+                        .attr("width", "100%")
+                        .attr("height", height)
+                        .attr("viewBox", `0 0 ${width} ${height}`);
+
+                    const g = svg.append("g")
+                        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+                    // 4. Scales
+                    const yScale = d3.scaleBand()
+                        .domain(actors)
+                        .range([0, actors.length * laneHeight]);
+
+                    const xScale = d3.scaleLinear()
+                        .domain([0, data.length - 1])
+                        .range([0, width - margin.left - margin.right]);
+
+                    // 5. Draw Lanes (Grid)
+                    g.selectAll(".lane-bg")
+                        .data(actors)
+                        .enter()
+                        .append("rect")
+                        .attr("x", -margin.left) // Full width background
+                        .attr("y", d => yScale(d))
+                        .attr("width", width)
+                        .attr("height", laneHeight)
+                        .attr("fill", (d, i) => i % 2 === 0 ? "#fdfdfd" : "#fff"); // Subtle zebra stripe
+
+                    g.selectAll(".lane-line")
+                        .data(actors)
+                        .enter()
+                        .append("line")
+                        .attr("class", "lane-line")
+                        .attr("x1", -margin.left + 20)
+                        .attr("x2", width - margin.left - margin.right)
+                        .attr("y1", d => yScale(d) + laneHeight)
+                        .attr("y2", d => yScale(d) + laneHeight);
+
+                    // Actor Labels
+                    g.selectAll(".lane-label")
+                        .data(actors)
+                        .enter()
+                        .append("text")
+                        .attr("class", "lane-label")
+                        .attr("x", -20)
+                        .attr("y", d => yScale(d) + laneHeight / 2)
+                        .text(d => d);
+
+                    // 6. Draw Connections (Path)
+                    const lineGenerator = d3.line()
+                        .x(d => xScale(d.id))
+                        .y(d => yScale(d.actor) + laneHeight / 2)
+                        .curve(d3.curveMonotoneX);
+
+                    g.append("path")
+                        .datum(data)
+                        .attr("class", "connection-path")
+                        .attr("d", lineGenerator);
+
+                    // 7. Draw Nodes
+                    const nodesGroup = g.selectAll(".node-group")
+                        .data(data)
+                        .enter()
+                        .append("g")
+                        .attr("class", "node-group")
+                        .attr("transform", d => `translate(${xScale(d.id)}, ${yScale(d.actor) + laneHeight / 2})`);
+
+                    const circles = nodesGroup.append("circle")
+                        .attr("class", "node-circle")
+                        .attr("r", 9)
+                        .attr("fill", "#fff");
+
+                    nodesGroup.append("text")
+                        .attr("class", "node-label")
+                        .attr("dy", 1)
+                        .text(d => d.stepNumber);
+
+                    // 8. Interactivity with Popover
+                    const popover = document.getElementById('detail-popover');
+                    const popoverTitle = document.getElementById('popover-title');
+                    const popoverDesc = document.getElementById('popover-desc');
+
+                    function showPopover(d, element) {
+                        d3.selectAll('.node-circle').classed('active', false);
+                        d3.select(element).classed('active', true);
+
+                        // 1. Update Content First (so we can measure)
+                        popoverTitle.textContent = `STEP ${d.stepNumber} – ${d.actor.toUpperCase()}`;
+                        popoverDesc.textContent = d.detail;
+
+                        // 2. Show initially to measure dimensions (but maybe offscreen or just assume standard flow)
+                        popover.open = true;
+
+                        // 3. Get Coordinates & Dimensions
+                        const rect = element.getBoundingClientRect();
+                        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                        const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+                        // Get ACTUAL rendered dimensions of the popover
+                        const popRect = popover.getBoundingClientRect();
+                        const popoverWidth = popRect.width;
+                        const popoverHeight = popRect.height;
+
+                        const viewportWidth = window.innerWidth;
+                        const viewportHeight = window.innerHeight;
+
+                        // 4. Default Position (Right-Bottom of node)
+                        let top = rect.top + scrollTop;
+                        let left = rect.left + scrollLeft + 20;
+
+                        // 5. Boundary Check
+                        // If it goes off RIGHT edge, flip to Left
+                        // We place it 20px to the left of the node's left edge
+                        if (rect.left + popoverWidth + 20 > viewportWidth) {
+                            left = rect.left + scrollLeft - popoverWidth - 20;
+                        }
+
+                        // If it goes off BOTTOM edge, flip to Top
+                        // We place it above the node
+                        if (rect.top + popoverHeight > viewportHeight + scrollTop) {
+                            top = rect.top + scrollTop - popoverHeight;
+                        }
+
+                        // 6. Apply Final Position
+                        popover.style.top = `${top}px`;
+                        popover.style.left = `${left}px`;
+                    }
+
+                    function hidePopover() {
+                        popover.open = false;
+                        d3.selectAll('.node-circle').classed('active', false);
+                    }
+
+                    circles.on("click", function (event, d) {
+                        event.stopPropagation();
+                        showPopover(d, this);
+                    });
+
+                    circles.on("mouseenter", function (event, d) {
+                        showPopover(d, this);
+                    });
+
+                    // Close on outside click
+                    document.addEventListener('click', (e) => {
+                        if (!e.target.closest('.node-circle') && !e.target.closest('cds-popover')) {
+                            hidePopover();
+                        }
+                    });
+
                 })
-                .catch(error => console.error('Error loading process data:', error));
+                .catch(err => {
+                    console.error(err);
+                    document.getElementById('chart-area').innerHTML = `<p style="color:red">Errore caricamento dati: ${err.message}</p>`;
+                });
         });
     </script>
 </body>

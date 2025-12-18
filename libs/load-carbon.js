@@ -18,6 +18,7 @@ import './carbon/dist/tile.min.js';
 import './carbon/dist/link.min.js';
 import './carbon/dist/list.min.js';
 import './carbon/dist/notification.min.js';
+import './carbon/dist/popover.min.js';
 
 // Aggiungere altri componenti se necessario
 // Add other components as needed
