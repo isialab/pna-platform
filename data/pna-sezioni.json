@@ -1,308 +1,359 @@
 [
     {
-        "id": "arti-performative-arti-dello-spettacolo-danza-danza-classica",
+        "id": "arti-performative-arti-dello-spettacolo-danza-classica",
         "premio": "Arti Performative",
         "sezione": "Arti dello spettacolo",
-        "sottosezione": "Danza - Danza classica"
+        "sottosezione": "Danza classica",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-arti-dello-spettacolo-danza-danza-contemporanea",
+        "id": "arti-performative-arti-dello-spettacolo-danza-contemporanea",
         "premio": "Arti Performative",
         "sezione": "Arti dello spettacolo",
-        "sottosezione": "Danza - Danza contemporanea"
+        "sottosezione": "Danza contemporanea",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-arti-dello-spettacolo-danza-coreografia",
+        "id": "arti-performative-arti-dello-spettacolo-coreografia",
         "premio": "Arti Performative",
         "sezione": "Arti dello spettacolo",
-        "sottosezione": "Danza - Coreografia"
+        "sottosezione": "Coreografia",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-arti-dello-spettacolo-arte-drammatica-regia",
+        "id": "arti-performative-arti-dello-spettacolo-recitazione",
         "premio": "Arti Performative",
         "sezione": "Arti dello spettacolo",
-        "sottosezione": "Arte drammatica - Regia"
+        "sottosezione": "Recitazione",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-arti-dello-spettacolo-arte-drammatica-recitazione",
+        "id": "arti-performative-arti-dello-spettacolo-regia",
         "premio": "Arti Performative",
         "sezione": "Arti dello spettacolo",
-        "sottosezione": "Arte drammatica - Recitazione"
+        "sottosezione": "Regia",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-arti-dello-spettacolo-arte-drammatica-drammaturgia",
+        "id": "arti-performative-arti-dello-spettacolo-drammaturgia",
         "premio": "Arti Performative",
         "sezione": "Arti dello spettacolo",
-        "sottosezione": "Arte drammatica - Drammaturgia"
+        "sottosezione": "Drammaturgia",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-interpretazione-musicale-canto-canto-lirico",
+        "id": "arti-performative-interpretazione-musicale-canto-lirico",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Canto - Canto lirico"
+        "sottosezione": "Canto lirico",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-interpretazione-musicale-canto-musica-vocale-da-camera",
+        "id": "arti-performative-interpretazione-musicale-musica-vocale-da-camera",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Canto - Musica vocale da camera"
+        "sottosezione": "Musica vocale da camera",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-interpretazione-musicale-chitarra-arpa-e-mandolino-chitarra",
+        "id": "arti-performative-interpretazione-musicale-chitarra",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Chitarra, arpa e mandolino - Chitarra"
+        "sottosezione": "Chitarra",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-interpretazione-musicale-chitarra-arpa-e-mandolino-arpa",
+        "id": "arti-performative-interpretazione-musicale-arpa",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Chitarra, arpa e mandolino - Arpa"
+        "sottosezione": "Arpa",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-interpretazione-musicale-chitarra-arpa-e-mandolino-mandolino",
+        "id": "arti-performative-interpretazione-musicale-mandolino",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Chitarra, arpa e mandolino - Mandolino"
+        "sottosezione": "Mandolino",
+        "categoria": ""
     },
     {
         "id": "arti-performative-interpretazione-musicale-composizione",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Composizione"
+        "sottosezione": "Composizione",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-interpretazione-musicale-direzione-d-orchestra",
+        "id": "arti-performative-interpretazione-musicale-direzione-dorchestra",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Direzione d’Orchestra"
+        "sottosezione": "Direzione d’Orchestra",
+        "categoria": ""
     },
     {
         "id": "arti-performative-interpretazione-musicale-fisarmonica",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Fisarmonica"
+        "sottosezione": "Fisarmonica",
+        "categoria": ""
     },
     {
         "id": "arti-performative-interpretazione-musicale-jazz",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Jazz"
+        "sottosezione": "Jazz",
+        "categoria": ""
     },
     {
-        "id": "arti-performative-interpretazione-musicale-musica-da-camera-e-d-insieme",
+        "id": "arti-performative-interpretazione-musicale-musica-da-camera-e-dinsieme",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica da Camera e d’Insieme"
+        "sottosezione": "Musica da Camera e d’Insieme",
+        "categoria": ""
     },
     {
         "id": "arti-performative-interpretazione-musicale-musica-elettronica-e-nuove-tecnologie-opere-originali-di-musica-acusmatica",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica elettronica e nuove tecnologie - Opere originali di musica acusmatica"
+        "sottosezione": "Musica elettronica e nuove tecnologie",
+        "categoria": "Opere originali di musica acusmatica"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musica-elettronica-e-nuove-tecnologie-opere-originali-di-musica-elettroacustica-mista",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica elettronica e nuove tecnologie - Opere originali di musica elettroacustica mista"
+        "sottosezione": "Musica elettronica e nuove tecnologie",
+        "categoria": "Opere originali di musica elettroacustica mista"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musica-elettronica-e-nuove-tecnologie-opere-originali-audio-video",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica elettronica e nuove tecnologie - Opere originali audio-video"
+        "sottosezione": "Musica elettronica e nuove tecnologie",
+        "categoria": "Opere originali audio-video"
     },
     {
-        "id": "arti-performative-interpretazione-musicale-musica-elettronica-e-nuove-tecnologie-installazioni-sonore-d-arte",
+        "id": "arti-performative-interpretazione-musicale-musica-elettronica-e-nuove-tecnologie-installazioni-sonore-darte",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica elettronica e nuove tecnologie - Installazioni sonore d’arte"
+        "sottosezione": "Musica elettronica e nuove tecnologie",
+        "categoria": "Installazioni sonore d’arte"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musica-per-strumenti-antichi-e-voci-cantante-solista",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica per strumenti antichi e voci - Cantante solista"
+        "sottosezione": "Musica per strumenti antichi e voci",
+        "categoria": "Cantante solista"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musica-per-strumenti-antichi-e-voci-strumento-solista-solo-o-con-basso-continuo",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica per strumenti antichi e voci - Strumento solista (solo o con basso continuo)"
+        "sottosezione": "Musica per strumenti antichi e voci",
+        "categoria": "Strumento solista (solo o con basso continuo)"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musica-per-strumenti-antichi-e-voci-gruppo-vocale",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica per strumenti antichi e voci - Gruppo vocale"
+        "sottosezione": "Musica per strumenti antichi e voci",
+        "categoria": "Gruppo vocale"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musica-per-strumenti-antichi-e-voci-gruppo-strumentale",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musica per strumenti antichi e voci - Gruppo strumentale"
+        "sottosezione": "Musica per strumenti antichi e voci",
+        "categoria": "Gruppo strumentale"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musiche-pop-e-rock-originali-gruppi",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musiche pop e rock originali - Gruppi"
+        "sottosezione": "Musiche pop e rock originali",
+        "categoria": "Gruppi"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musiche-pop-e-rock-originali-solisti",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musiche pop e rock originali - Solisti"
+        "sottosezione": "Musiche pop e rock originali",
+        "categoria": "Solisti"
     },
     {
         "id": "arti-performative-interpretazione-musicale-musiche-pop-e-rock-originali-voci",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Musiche pop e rock originali - Voci"
+        "sottosezione": "Musiche pop e rock originali",
+        "categoria": "Voci"
     },
     {
         "id": "arti-performative-interpretazione-musicale-organo",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Organo"
+        "sottosezione": "Organo",
+        "categoria": ""
     },
     {
         "id": "arti-performative-interpretazione-musicale-pianoforte",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Pianoforte"
+        "sottosezione": "Pianoforte",
+        "categoria": ""
     },
     {
         "id": "arti-performative-interpretazione-musicale-strumenti-a-fiato-legni-flauto-oboe-clarinetto-fagotto-sassofono",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Strumenti a fiato - Legni (Flauto, Oboe, Clarinetto, Fagotto, Sassofono)"
+        "sottosezione": "Strumenti a fiato",
+        "categoria": "Legni (Flauto, Oboe, Clarinetto, Fagotto, Sassofono)"
     },
     {
         "id": "arti-performative-interpretazione-musicale-strumenti-a-fiato-ottoni-tromba-trombone-corno-eufonio-bassotuba",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Strumenti a fiato - Ottoni (Tromba, Trombone, Corno, Eufonio, Bassotuba)"
+        "sottosezione": "Strumenti a fiato",
+        "categoria": "Ottoni (Tromba, Trombone, Corno, Eufonio, Bassotuba)"
     },
     {
         "id": "arti-performative-interpretazione-musicale-strumenti-a-percussione-solisti-categoria-a",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Strumenti a percussione - Solisti (Categoria A)"
+        "sottosezione": "Strumenti a percussione",
+        "categoria": "Solisti (Categoria A)"
     },
     {
         "id": "arti-performative-interpretazione-musicale-strumenti-a-percussione-ensemble-di-percussioni-categoria-b",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Strumenti a percussione - Ensemble di Percussioni (Categoria B)"
+        "sottosezione": "Strumenti a percussione",
+        "categoria": "Ensemble di Percussioni (Categoria B)"
     },
     {
         "id": "arti-performative-interpretazione-musicale-strumenti-ad-arco-violino-e-viola",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Strumenti ad arco - Violino e viola"
+        "sottosezione": "Strumenti ad arco",
+        "categoria": "Violino e viola"
     },
     {
         "id": "arti-performative-interpretazione-musicale-strumenti-ad-arco-violoncello-e-contrabbasso",
         "premio": "Arti Performative",
         "sezione": "Interpretazione musicale",
-        "sottosezione": "Strumenti ad arco - Violoncello e contrabbasso"
+        "sottosezione": "Strumenti ad arco",
+        "categoria": "Violoncello e contrabbasso"
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-pittura",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Pittura"
+        "sottosezione": "Pittura",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-scultura",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Scultura"
+        "sottosezione": "Scultura",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-arti-grafiche",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Arti Grafiche"
+        "sottosezione": "Arti Grafiche",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-decorazione",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Decorazione"
+        "sottosezione": "Decorazione",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-scenografia-teatrale-cinematografica-e-televisiva",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Scenografia teatrale, cinematografica e televisiva"
+        "sottosezione": "Scenografia teatrale, cinematografica e televisiva",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-arte-elettronica-opere-interattive",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Arte elettronica / Opere interattive"
+        "sottosezione": "Arte elettronica / Opere interattive",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-fotografia",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Fotografia"
+        "sottosezione": "Fotografia",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-arti-performative-arte-relazionale",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Arti performative / Arte relazionale"
+        "sottosezione": "Arti performative / Arte relazionale",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-videoinstallazione-videoarte",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Videoinstallazione / Videoarte"
+        "sottosezione": "Videoinstallazione / Videoarte",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-installazioni-multimediali",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Installazioni multimediali"
+        "sottosezione": "Installazioni multimediali",
+        "categoria": ""
     },
     {
-        "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-produzioni-audiovisive-di-documentazione-narrazione",
+        "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-produzioni-audiovisive-di-documentazionenarrazione",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Produzioni audiovisive di documentazione/narrazione"
+        "sottosezione": "Produzioni audiovisive di documentazione/narrazione",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-arti-visive-arti-figurative-digitali-e-scenografiche-restauro-autonoma-e-con-giuria-specializzata",
         "premio": "Arti Visive e Design",
         "sezione": "Arti visive: arti figurative, digitali e scenografiche",
-        "sottosezione": "Restauro (autonoma e con giuria specializzata)"
+        "sottosezione": "Restauro (autonoma e con giuria specializzata)",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-design-pressione-climatica",
         "premio": "Arti Visive e Design",
         "sezione": "Design",
-        "sottosezione": "Pressione climatica"
+        "sottosezione": "Pressione climatica",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-design-instabilit-politica-internazionale",
         "premio": "Arti Visive e Design",
         "sezione": "Design",
-        "sottosezione": "Instabilità politica internazionale"
+        "sottosezione": "Instabilità politica internazionale",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-design-bassa-natalit-e-invecchiamento-della-popolazione",
         "premio": "Arti Visive e Design",
         "sezione": "Design",
-        "sottosezione": "Bassa natalità e invecchiamento della popolazione"
+        "sottosezione": "Bassa natalità e invecchiamento della popolazione",
+        "categoria": ""
     },
     {
         "id": "arti-visive-e-design-design-intelligenza-artificiale",
         "premio": "Arti Visive e Design",
         "sezione": "Design",
-        "sottosezione": "Intelligenza Artificiale"
+        "sottosezione": "Intelligenza Artificiale",
+        "categoria": ""
     }
 ]
