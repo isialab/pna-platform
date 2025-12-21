@@ -34,3 +34,13 @@ Login Attempt: {"email":"ciro.blu@test.com"}
 Login Attempt: {"email":"ciro.blu@test.com","password":"securepass123"}
 [2025-12-17 07:30:31] Request received: POST
 Update Profile: {"email":"ciro.blu@test.com","nome":"Ciro Updated","cognome":"Blu Updated"}
+[2025-12-20 21:35:05] Request received: POST
+Input: {"nome":"Mario","cognome":"Studente","email":"mario@studente.it","telefono":"+3933333","password":"a","confirm_password":"a","matricola":"00123","codice_fiscale":"LPR","data_nascita":"2025-12-27","luogo_nascita":"Roma","nazionalita":"Italia","residenza":"Roma","indirizzo":"Viale del Bosco, 53","corso_denominazione":"Design sistemico per la Comunicazione","corso_livello":"II livello","corso_anno":"2","anno_accademico":"2024/2025"}
+[2025-12-20 22:25:56] Request received: POST
+Login Attempt: {"email":"mario@studente.it","password":"a"}
+[2025-12-20 22:42:33] Request received: GET
+[2025-12-20 22:42:34] Request received: GET
+[2025-12-20 22:42:37] Request received: GET
+[2025-12-20 22:51:02] Request received: GET
+[2025-12-20 22:52:56] Request received: GET
+[2025-12-20 22:53:00] Request received: GET

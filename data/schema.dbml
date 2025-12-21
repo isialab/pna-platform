@@ -2,39 +2,28 @@ Table progetto [headercolor: #175e7a] {
 	id_progetto int [ pk, increment, unique ]
 	id_edizione int [ not null ]
 	id_istituzione int [ not null ]
+	id_studente int [ not null, note: 'Studente Capofila / Lead Student' ]
+	id_premio int [ not null ]
+	id_sezione int [ not null ]
+	id_sottosezione int [ not null ]
+	id_categoria int [ note: 'Eventuale specifica / sottosottosezione' ]
 	titolo varchar(255) [ not null, note: 'Nome progetto' ]
 	sottotitolo varchar(255) [ note: 'Sottotitolo o specifica' ]
 	descrizione varchar(500) [ not null, note: 'Sinossi/Concept/Statement max 500 caratteri spazi inclusi' ]
 	tipo_progetto int [ not null, note: 'Progetto esame, Tesi, Ricerca' ]
 	anno int [ not null ]
-	immagini_01_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
-	immagini_02_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
-	immagini_03_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
-	immagini_04_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
-	selezionato boolean [ note: 'Ha passato la selezione' ]
-	vincitore boolean [ note: 'Vincitore finale' ]
+	immagini_cover_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
 	data_invio datetime [ default: `now()` ]
-	stato_candidatura varchar(50) [ default: 'Bozza', note: 'Inviata, Accettata, Incompleta' ]
-}
-
-Table candidature [headercolor: #175e7a] {
-	id_candidatura int [ pk, increment, unique ]
-	id_studente int [ not null, note: 'Studente Capofila / Lead Student' ]
-	id_istituzione int [ not null ]
-	id_edizione int [ not null ]
-	id_premio int [ not null ]
-	id_sezione int [ not null ]
-	id_sottosezione int [ note: 'Eventuale sottosottosezione' ]
-	data_invio datetime [ default: `now()` ]
+	stato_progetto varchar(50) [ default: 'Candidato', note: 'Preselezionato, Selezionato, Vincitore' ]
 	stato_candidatura varchar(50) [ default: 'Bozza', note: 'Inviata, Accettata, Incompleta' ]
 }
 
 Table candidatura_studente [headercolor: #175e7a] {
-	id_candidatura int [ pk ]
+	id_progetto int [ pk ]
 	id_studente int
 
 	indexes {
-		(id_candidatura, id_studente) [ name: 'candidatura_studente_index_0' ]
+		(id_progetto, id_studente) [ name: 'candidatura_studente_index_0' ]
 	}
 }
 
@@ -44,7 +33,7 @@ Table studente [headercolor: #175e7a] {
 	cognome varchar(100) [ not null ]
 	email varchar(100) [ not null ]
 	password varchar(255) [ not null ]
-	//Dati accademici
+	//Dati amministrativi
 	codice_fiscale varchar(255) [ not null ]
 	data_nascita date [ not null, note: 'Es. 01/12/2000' ]
 	luogo_nascita varchar(255) [ not null, note: 'Es. Roma' ]
@@ -187,6 +176,10 @@ Table studente_istituzione [headercolor: #175e7a] {
 Table docente_istituzione [headercolor: #175e7a] {
 	id_docente int [ pk, unique ]
 	id_istituzione int
+	//Dati accademici
+	corso_disciplina varchar(50) [ not null, note: 'Nome della disciplina dell\'insegnamento' ]
+	corso_livello varchar(50) [ not null, note: 'I livello/II livello' ]
+	corso_denominazione varchar(50) [ not null, note: 'Nome del corso accademico' ]
 
 	indexes {
 		(id_docente, id_istituzione) [ name: 'docente_istituzione_index_6' ]
@@ -211,6 +204,13 @@ Table sottosezione [headercolor: #175e7a] {
 	id_sezione int [ not null, note: 'FK: usata dal Frontend per filtrare' ]
 	nome varchar(255) [ not null ]
 	label varchar(255) [ note: 'Etichetta visualizzata' ]
+}
+
+Table categoria [headercolor: #175e7a] {
+	id_categoria int [ pk, increment, unique ]
+	id_sottosezione int [ not null, note: 'FK: usata dal Frontend per filtrare' ]
+	nome varchar(255) [ not null ]
+    label varchar(255)
 }
 
 Table edizione_premio [headercolor: #175e7a] {
@@ -245,7 +245,7 @@ Table istituzione_edizione [headercolor: #175e7a] {
 }
 
 Table design_progetto [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	design_titolo varchar
 	design_immagini_01_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
 	design_immagini_02_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
@@ -263,7 +263,7 @@ Table design_progetto [headercolor: #175e7a] {
 }
 
 Table artivisive_opera [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	artivisive_immagini_01_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
 	artivisive_immagini_02_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
 	artivisive_immagini_03_path varchar(255) [ note: 'Formato jpg/png/tiﬀ, formato 16:9 o 4:3 o 1:1, lato lungo 2480 pixel, risoluzione 300 dpi con profilo colore RGB' ]
@@ -282,7 +282,7 @@ Table artivisive_opera [headercolor: #175e7a] {
 }
 
 Table teatro_recitazione [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	teatro_recitazione_titolo varchar
 	teatro_recitazione_tipo varchar [ note: 'Monologo (max 4 min) o Dialogo (max 5 min)' ]
 	teatro_recitazione_testo_titolo varchar [ note: 'Titolo e autore del testo di provenienza' ]
@@ -294,7 +294,7 @@ Table teatro_recitazione [headercolor: #175e7a] {
 }
 
 Table teatro_regia [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	teatro_regia_titolo varchar
 	teatro_regia_cv_path varchar(255) [ note: 'CV in formato PDF' ]
 	teatro_regia_interprete1_nome varchar(255)
@@ -309,7 +309,7 @@ Table teatro_regia [headercolor: #175e7a] {
 }
 
 Table teatro_drammaturgia [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	teatro_drammaturgia_titolo varchar
 	teatro_drammaturgia_cv_path varchar(255) [ note: 'CV in formato PDF' ]
 	teatro_drammaturgia_sottosezione varchar [ note: 'Miglior drammaturgia o Testo comico (Premio Anna Marchesini)' ]
@@ -319,7 +319,7 @@ Table teatro_drammaturgia [headercolor: #175e7a] {
 }
 
 Table danza_classica [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	danza_classica_var1_titolo varchar
 	danza_classica_var1_coreografia varchar
 	danza_classica_var1_musica varchar
@@ -335,7 +335,7 @@ Table danza_classica [headercolor: #175e7a] {
 }
 
 Table danza_contemporanea [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	danza_contemporanea_brano1_titolo varchar
 	danza_contemporanea_brano1_coreografia varchar
 	danza_contemporanea_brano1_musica varchar
@@ -354,7 +354,7 @@ Table danza_contemporanea [headercolor: #175e7a] {
 }
 
 Table danza_coreografia [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	danza_coreografia_titolo varchar
 	danza_coreografia_musica varchar
 	danza_coreografia_durata varchar [ note: 'Max 5 minuti' ]
@@ -365,48 +365,48 @@ Table danza_coreografia [headercolor: #175e7a] {
 }
 
 Table musica_composizione [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_composizione_motto varchar [ note: 'Motto identificativo (partitura anonima)' ]
 	musica_composizione_link_drive varchar [ note: 'Link a cartella Drive con partitura e parti' ]
 	musica_composizione_pianista boolean [ note: 'Richiesta pianista accompagnatore (SI/NO)' ]
 }
 
 Table musica_fisarmonica [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_fisarmonica_prog_eliminatoria text [ note: 'Programma libero max 25 min (incluso clavicembalo/tasto)' ]
 	musica_fisarmonica_prog_finale text [ note: 'Programma 25-35 min (lista obbligatoria + Bach)' ]
 }
 
 Table musica_antica [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_antica_sottosezione varchar [ note: 'Canto, Strumento solista, Gruppo vocale, Gruppo strumentale' ]
 	musica_antica_prog_eliminatoria text [ note: 'Programma libero 20 min' ]
 	musica_antica_prog_finale text [ note: 'Programma libero 20 min' ]
 }
 
 Table musica_organo [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_organo_registrante_richiesto boolean [ note: 'Richiesta registrante/voltapagine conservatorio?' ]
 	musica_organo_prog_eliminatoria text [ note: 'Programma libero 12-20 min' ]
 	musica_organo_prog_finale text [ note: 'Programma libero 30-40 min' ]
 }
 
 Table musica_jazz [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_jazz_link_preselezione varchar [ note: 'Link video max 20 min (originale + standard + post-1970)' ]
 	musica_jazz_prog_semifinale text [ note: 'Programma libero max 30 min' ]
 	musica_jazz_prog_finale text [ note: 'Programma max 40 min (incluso originale)' ]
 }
 
 Table musica_da_camera [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_camera_pianista_richiesto boolean [ note: 'Richiesta pianista accompagnatore?' ]
 	musica_camera_link_preselezione varchar [ note: 'Link video 10-15 min (repertorio cameristico)' ]
 	musica_camera_prog_finale text [ note: 'Programma libero max 30 min' ]
 }
 
 Table musica_legni [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_legni_strumento varchar [ note: 'Flauto, Oboe, Clarinetto, Fagotto o Sassofono' ]
 	musica_legni_pianista_richiesto boolean [ note: 'Richiesta pianista accompagnatore?' ]
 	musica_legni_prog_eliminatoria text [ note: 'Brani d\'obbligo specifici per strumento' ]
@@ -414,14 +414,14 @@ Table musica_legni [headercolor: #175e7a] {
 }
 
 Table musica_pianoforte [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_pianoforte_link_eliminatoria varchar [ note: 'Link video max 10 min (Studio Chopin/Liszt/ecc)' ]
 	musica_pianoforte_prog_semifinale text [ note: 'Programma libero 40 min' ]
 	musica_pianoforte_prog_finale varchar [ note: 'Concerto per pf e orchestra (scelto da lista)' ]
 }
 
 Table musica_percussioni [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_percussioni_categoria varchar [ note: 'Solisti o Ensemble' ]
 	musica_percussioni_pianista_richiesto boolean [ note: 'Richiesta pianista accompagnatore?' ]
 	musica_percussioni_supporto_audio boolean [ note: 'Uso supporto audio-digitale?' ]
@@ -431,7 +431,7 @@ Table musica_percussioni [headercolor: #175e7a] {
 }
 
 Table musica_ottoni [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_ottoni_strumento varchar [ note: 'Tromba, Trombone, Corno, Eufonio, Basso Tuba' ]
 	musica_ottoni_pianista_richiesto boolean [ note: 'Richiesta pianista accompagnatore?' ]
 	musica_ottoni_link_video varchar [ note: 'Link YouTube Programma libero max 10 min' ]
@@ -440,7 +440,7 @@ Table musica_ottoni [headercolor: #175e7a] {
 }
 
 Table musica_violino_viola [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_archi_strumento varchar [ note: 'Violino o Viola' ]
 	musica_archi_link_preselezione varchar [ note: 'Link video (Bach/Paganini o Bach/Suite)' ]
 	musica_archi_prog_semifinale text [ note: 'Violino: 2 composizioni (max 30 min). Viola: Concerto (max 30 min)' ]
@@ -448,20 +448,20 @@ Table musica_violino_viola [headercolor: #175e7a] {
 }
 
 Table musica_elettronica [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_elettronica_categoria varchar [ note: 'A (Acusmatica), B (Mista), C (Audio-video), D (Installazioni)' ]
 	musica_elettronica_descrizione text [ note: 'Durata max 10 min per cat A,B,C' ]
 }
 
 Table musica_pop_rock [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_poprock_pianista_richiesto boolean [ note: 'Richiesta pianista accompagnatore?' ]
 	musica_poprock_link_semifinale varchar [ note: 'Link video cover repertorio pop/rock' ]
 	musica_poprock_link_finale varchar [ note: 'Link video brano originale' ]
 }
 
 Table musica_violoncello_contrabbasso [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_bassi_strumento varchar [ note: 'Violoncello o Contrabbasso' ]
 	musica_bassi_pianista_richiesto boolean [ note: 'Richiesta pianista accompagnatore?' ]
 	musica_bassi_prog_eliminatoria text [ note: 'Violoncello: Bach + Studio. Contrabbasso: Mengoli/Fryba/Bottesini' ]
@@ -469,7 +469,7 @@ Table musica_violoncello_contrabbasso [headercolor: #175e7a] {
 }
 
 Table musica_direzione_orchestra [headercolor: #175e7a] {
-	id_candidatura int [ pk, unique ]
+	id_progetto int [ pk, unique ]
 	musica_direzione_link_eliminatoria varchar [ note: 'Link video max 15 min propria direzione' ]
 	musica_direzione_repertorio_fasi_succ text [ note: 'Programma fisso da bando (Beethoven, Mendelssohn, Mozart, ecc)' ]
 }
@@ -534,20 +534,22 @@ Ref fk_istituzione_id_istituzione_progetto {
 	istituzione.id_istituzione < progetto.id_istituzione [ delete: no action, update: no action ]
 }
 
-Ref fk_studente_id_studente_candidature {
-	studente.id_studente < candidature.id_studente [ delete: no action, update: no action ]
+// Nuovi riferimenti per Progetto (ex-candidature)
+Ref fk_studente_id_studente_progetto {
+	studente.id_studente < progetto.id_studente [ delete: no action, update: no action ]
 }
 
-Ref fk_istituzione_id_istituzione_candidature {
-	istituzione.id_istituzione < candidature.id_istituzione [ delete: no action, update: no action ]
+Ref fk_premio_id_premio_progetto {
+	premio.id_premio < progetto.id_premio [ delete: no action, update: no action ]
 }
 
-Ref fk_edizione_id_edizione_candidature {
-	edizione.id_edizione < candidature.id_edizione [ delete: no action, update: no action ]
+Ref fk_sezione_id_sezione_progetto {
+	sezione.id_sezione < progetto.id_sezione [ delete: no action, update: no action ]
 }
+// Note: Sottosezione e Categoria riferimenti omessi per brevità o aggiungibili se necessario
 
-Ref fk_candidature_id_candidatura_candidatura_studente {
-	candidature.id_candidatura < candidatura_studente.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_candidatura_studente {
+	progetto.id_progetto < candidatura_studente.id_progetto [ delete: no action, update: no action ]
 }
 
 Ref fk_studente_id_studente_candidatura_studente {
@@ -590,14 +592,6 @@ Ref fk_premio_id_premio_istituzione_premio {
 	premio.id_premio < istituzione_premio.id_premio [ delete: no action, update: no action ]
 }
 
-Ref fk_premio_id_premio_candidature {
-	premio.id_premio < candidature.id_premio [ delete: no action, update: no action ]
-}
-
-Ref fk_sezione_id_sezione_candidature {
-	sezione.id_sezione < candidature.id_sezione [ delete: no action, update: no action ]
-}
-
 Ref fk_istituzione_id_istituzione_istituzione_edizione {
 	istituzione.id_istituzione < istituzione_edizione.id_istituzione [ delete: no action, update: no action ]
 }
@@ -606,96 +600,97 @@ Ref fk_edizione_id_edizione_istituzione_edizione {
 	edizione.id_edizione < istituzione_edizione.id_edizione [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_design_progetto {
-	candidature.id_candidatura - design_progetto.id_candidatura [ delete: no action, update: no action ]
+// Ref references for extension tables pointing to progetto
+Ref fk_progetto_id_progetto_design_progetto {
+	progetto.id_progetto - design_progetto.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_artivisive_opera {
-	candidature.id_candidatura - artivisive_opera.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_artivisive_opera {
+	progetto.id_progetto - artivisive_opera.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_teatro_recitazione {
-	candidature.id_candidatura - teatro_recitazione.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_teatro_recitazione {
+	progetto.id_progetto - teatro_recitazione.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_teatro_regia {
-	candidature.id_candidatura - teatro_regia.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_teatro_regia {
+	progetto.id_progetto - teatro_regia.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_teatro_drammaturgia {
-	candidature.id_candidatura - teatro_drammaturgia.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_teatro_drammaturgia {
+	progetto.id_progetto - teatro_drammaturgia.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_danza_classica {
-	candidature.id_candidatura - danza_classica.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_danza_classica {
+	progetto.id_progetto - danza_classica.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_danza_contemporanea {
-	candidature.id_candidatura - danza_contemporanea.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_danza_contemporanea {
+	progetto.id_progetto - danza_contemporanea.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_danza_coreografia {
-	candidature.id_candidatura - danza_coreografia.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_danza_coreografia {
+	progetto.id_progetto - danza_coreografia.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_composizione {
-	candidature.id_candidatura - musica_composizione.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_composizione {
+	progetto.id_progetto - musica_composizione.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_fisarmonica {
-	candidature.id_candidatura - musica_fisarmonica.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_fisarmonica {
+	progetto.id_progetto - musica_fisarmonica.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_antica {
-	candidature.id_candidatura - musica_antica.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_antica {
+	progetto.id_progetto - musica_antica.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_organo {
-	candidature.id_candidatura - musica_organo.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_organo {
+	progetto.id_progetto - musica_organo.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_jazz {
-	candidature.id_candidatura - musica_jazz.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_jazz {
+	progetto.id_progetto - musica_jazz.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_da_camera {
-	candidature.id_candidatura - musica_da_camera.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_da_camera {
+	progetto.id_progetto - musica_da_camera.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_legni {
-	candidature.id_candidatura - musica_legni.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_legni {
+	progetto.id_progetto - musica_legni.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_pianoforte {
-	candidature.id_candidatura - musica_pianoforte.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_pianoforte {
+	progetto.id_progetto - musica_pianoforte.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_percussioni {
-	candidature.id_candidatura - musica_percussioni.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_percussioni {
+	progetto.id_progetto - musica_percussioni.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_ottoni {
-	candidature.id_candidatura - musica_ottoni.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_ottoni {
+	progetto.id_progetto - musica_ottoni.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_violino_viola {
-	candidature.id_candidatura - musica_violino_viola.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_violino_viola {
+	progetto.id_progetto - musica_violino_viola.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_elettronica {
-	candidature.id_candidatura - musica_elettronica.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_elettronica {
+	progetto.id_progetto - musica_elettronica.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_pop_rock {
-	candidature.id_candidatura - musica_pop_rock.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_pop_rock {
+	progetto.id_progetto - musica_pop_rock.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_violoncello_contrabbasso {
-	candidature.id_candidatura - musica_violoncello_contrabbasso.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_violoncello_contrabbasso {
+	progetto.id_progetto - musica_violoncello_contrabbasso.id_progetto [ delete: no action, update: no action ]
 }
 
-Ref fk_candidature_id_candidatura_musica_direzione_orchestra {
-	candidature.id_candidatura - musica_direzione_orchestra.id_candidatura [ delete: no action, update: no action ]
+Ref fk_progetto_id_progetto_musica_direzione_orchestra {
+	progetto.id_progetto - musica_direzione_orchestra.id_progetto [ delete: no action, update: no action ]
 }
 
 Ref fk_sezione_id_sezione_sottosezione {
@@ -703,7 +698,15 @@ Ref fk_sezione_id_sezione_sottosezione {
 }
 
 Ref fk_sottosezione_id_sottosezione_candidature {
-	sottosezione.id_sottosezione < candidature.id_sottosezione [ delete: no action, update: no action ]
+	sottosezione.id_sottosezione < progetto.id_sottosezione [ delete: no action, update: no action ]
+}
+
+Ref fk_sottosezione_id_sottosezione_categoria {
+	sottosezione.id_sottosezione < categoria.id_sottosezione [ delete: no action, update: no action ]
+}
+
+Ref fk_categoria_id_categoria_candidature {
+	categoria.id_categoria < progetto.id_categoria [ delete: no action, update: no action ]
 }
 
 Ref fk_tipologia_istituzione_id_tipologia_istituzione_istituzione {

@@ -226,6 +226,55 @@ try {
             http_response_code(500);
             echo json_encode(["message" => "Database not found."]);
         }
+    } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && $action === 'search_users') {
+        // Handle User Search
+        $query = isset($_GET['query']) ? strtolower(trim($_GET['query'])) : '';
+        
+        if (strlen($query) < 2) {
+             http_response_code(400);
+             echo json_encode(["message" => "Query too short."]);
+             exit;
+        }
+
+        if (file_exists($dbFile)) {
+            $fileContent = file_get_contents($dbFile);
+            $currentData = json_decode($fileContent, true);
+            $results = [];
+
+            if (is_array($currentData)) {
+                foreach ($currentData as $user) {
+                    // Skip candidacies (record_type)
+                    if (isset($user['record_type']) && $user['record_type'] === 'candidacy') {
+                        continue;
+                    }
+
+                    // Check Match
+                    $nome = isset($user['nome']) ? strtolower($user['nome']) : '';
+                    $cognome = isset($user['cognome']) ? strtolower($user['cognome']) : '';
+                    $email = isset($user['email']) ? strtolower($user['email']) : '';
+
+                    if (strpos($nome, $query) !== false || 
+                        strpos($cognome, $query) !== false || 
+                        strpos($email, $query) !== false) {
+                        
+                        // Return public info only
+                        $results[] = [
+                            'nome' => $user['nome'],
+                            'cognome' => $user['cognome'],
+                            'email' => $user['email'],
+                            // Add role/type if we had it, assuming 'studente' by default logic or generic
+                            'role' => 'studente' // or 'docente? we don't distinguish yet in DB clearly, assuming generic user
+                        ];
+                    }
+                }
+            }
+            
+            http_response_code(200);
+            echo json_encode(["users" => $results]);
+        } else {
+            http_response_code(500);
+            echo json_encode(["message" => "Database not found."]);
+        }
     } else {
         http_response_code(404);
         echo json_encode(["message" => "Endpoint not found or invalid method."]);

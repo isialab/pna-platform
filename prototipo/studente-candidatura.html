@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidatura - PNA</title>
+
+    <!-- Carbon Web Components (Local) -->
+    <script type="module" src="../libs/load-carbon.js"></script>
+
+    <!-- Custom Swiss Theme -->
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <cds-header aria-label="PNA Platform">
+        <cds-header-menu-button button-label-active="Close menu"
+            button-label-inactive="Open menu"></cds-header-menu-button>
+        <cds-header-name href="/index.html" prefix="PNA">Platform</cds-header-name>
+        <cds-header-nav menu-bar-label="PNA Platform">
+            <cds-header-nav-item href="/prototipo/index.html">Prototipo</cds-header-nav-item>
+            <cds-header-nav-item href="/viz/index.html">Infografiche</cds-header-nav-item>
+            <cds-header-nav-item href="/docs/">Docs</cds-header-nav-item>
+            <cds-header-nav-item href="/data/">Data</cds-header-nav-item>
+        </cds-header-nav>
+    </cds-header>
+
+    <div class="main-container">
+
+        <h1 class="page-title">Nuova Candidatura</h1>
+        <p class="page-subtitle">Compila il modulo per inviare la tua candidatura per l'anno accademico corrente.</p>
+
+        <div class="dashboard-grid">
+            <!-- Sidebar / Quick Actions -->
+            <div>
+                <cds-tile>
+                    <h3 style="margin-top:0;">Azioni Rapide</h3>
+                    <p style="margin-bottom: 1rem;">Navigazione rapida.</p>
+                    <cds-button kind="secondary" href="studente-dashboard.html"
+                        style="width: 100%; margin-bottom: 0.5rem;">Torna alla Dashboard</cds-button>
+                    <cds-button kind="ghost" href="studente-profilo.html" style="width: 100%;">Modifica
+                        Profilo</cds-button>
+                </cds-tile>
+            </div>
+
+            <!-- Main Content -->
+            <div>
+                <cds-tile>
+                    <div>
+                        <form id="candidaturaForm">
+
+                            <!-- Dati Principali -->
+                            <h4 style="margin-bottom: 1rem;">Dati Progetto</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <cds-text-input label="Titolo" placeholder="Titolo del progetto" id="titolo"
+                                        name="titolo" autocomplete="off" required></cds-text-input>
+                                </div>
+                                <div>
+                                    <cds-text-input label="Sottotitolo (Opzionale)" placeholder="Sottotitolo"
+                                        id="sottotitolo" name="sottotitolo" autocomplete="off"></cds-text-input>
+                                </div>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                                <div>
+                                    <cds-select label-text="Tipo Progetto" id="tipo_progetto" name="tipo_progetto"
+                                        required>
+                                        <cds-select-item value="" disabled selected>Seleziona tipo...</cds-select-item>
+                                        <cds-select-item value="1">Progetto d'Esame</cds-select-item>
+                                        <cds-select-item value="2">Tesi di Laurea</cds-select-item>
+                                        <cds-select-item value="3">Ricerca</cds-select-item>
+                                    </cds-select>
+                                </div>
+                                <div>
+                                    <cds-text-input label="Anno" type="number" placeholder="Es. 2024" id="anno"
+                                        name="anno" autocomplete="off" required></cds-text-input>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1rem;">
+                                <cds-textarea label="Descrizione (Sinossi/Statement)"
+                                    placeholder="Descrizione del progetto (max 500 caratteri)" id="descrizione"
+                                    name="descrizione" rows="6" maxlength="500" autocomplete="off"
+                                    required></cds-textarea>
+                            </div>
+
+                            <div style="margin-top: 1rem;">
+                                <cds-text-input label="Immagine di Copertina (Path)"
+                                    helper-text="Formato jpg/png/tiff, 16:9/4:3/1:1, lato lungo 2480px, 300dpi, RGB"
+                                    placeholder="/uploads/cover.jpg" id="immagini_cover_path" name="immagini_cover_path"
+                                    autocomplete="off"></cds-text-input>
+                            </div>
+
+                            <!-- Classificazione (Taxonomy) -->
+                            <h4 style="margin: 2rem 0 1rem 0;">Classificazione</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <cds-select label-text="Premio" id="id_premio" name="id_premio" required>
+                                        <cds-select-item value="" disabled selected>Seleziona
+                                            premio...</cds-select-item>
+                                        <!-- JS Populate -->
+                                    </cds-select>
+                                </div>
+                                <div>
+                                    <cds-select label-text="Sezione" id="id_sezione" name="id_sezione" required
+                                        disabled>
+                                        <cds-select-item value="" disabled selected>Prima seleziona
+                                            Premio...</cds-select-item>
+                                        <!-- JS Populate -->
+                                    </cds-select>
+                                </div>
+                                <div>
+                                    <cds-select label-text="Sottosezione" id="id_sottosezione" name="id_sottosezione"
+                                        required disabled>
+                                        <cds-select-item value="" disabled selected>Prima seleziona
+                                            Sezione...</cds-select-item>
+                                        <!-- JS Populate -->
+                                    </cds-select>
+                                </div>
+                                <div>
+                                    <cds-select label-text="Categoria (Opzionale)" id="id_categoria" name="id_categoria"
+                                        disabled>
+                                        <cds-select-item value="" disabled selected>Prima seleziona
+                                            Sottosezione...</cds-select-item>
+                                        <!-- JS Populate -->
+                                    </cds-select>
+                                </div>
+                            </div>
+
+                            <!-- DYNAMIC FIELDS CONTAINER -->
+                            <div id="dynamic_fields_container"
+                                style="margin-top: 2rem; border-top: 1px solid #e0e0e0; padding-top: 2rem;">
+
+                                <!-- DESIGN -->
+                                <div class="dynamic-section" data-field-group="design_progetto" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Design</h4>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <cds-text-input label="Ambito" id="design_ambito" name="design_ambito"
+                                            placeholder="Es. Pressione climatica..."></cds-text-input>
+                                        <cds-text-input label="Categoria Design" id="design_categoria"
+                                            name="design_categoria"
+                                            placeholder="Es. Design per l'Abitare..."></cds-text-input>
+                                        <cds-text-input label="Materiali" id="design_materiali" name="design_materiali"
+                                            placeholder="Es. ABS, acciaio"></cds-text-input>
+                                        <cds-text-input label="Dimensioni" id="design_dimensioni"
+                                            name="design_dimensioni" placeholder="HxLxP"></cds-text-input>
+                                        <cds-text-input label="Supporti" id="design_supporti" name="design_supporti"
+                                            placeholder="Es. Monitor 4K"></cds-text-input>
+                                        <cds-text-input label="Link Allegato B" id="design_allegato_b_path"
+                                            name="design_allegato_b_path"
+                                            placeholder="URL PDF Firmato"></cds-text-input>
+                                    </div>
+                                </div>
+
+                                <!-- ARTI VISIVE -->
+                                <div class="dynamic-section" data-field-group="artivisive_opera" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Arti Visive</h4>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <cds-text-input label="Tecnica" id="artivisive_tecnica"
+                                            name="artivisive_tecnica" placeholder="Es. Olio"></cds-text-input>
+                                        <cds-text-input label="Supporti" id="artivisive_supporti"
+                                            name="artivisive_supporti" placeholder="Es. Tela"></cds-text-input>
+                                        <cds-text-input label="Materiali" id="artivisive_materiali"
+                                            name="artivisive_materiali" placeholder="Es. Marmo"></cds-text-input>
+                                        <cds-text-input label="Dimensioni" id="artivisive_dimensioni"
+                                            name="artivisive_dimensioni" placeholder="HxLxP"></cds-text-input>
+                                        <cds-text-input label="Link Scheda Tecnica" id="artivisive_scheda_tecnica_path"
+                                            name="artivisive_scheda_tecnica_path"></cds-text-input>
+                                        <cds-text-input label="Link Restauro Tesi PDF" id="artivisive_restauro_tesi_pdf"
+                                            name="artivisive_restauro_tesi_pdf"
+                                            placeholder="Solo per Restauro"></cds-text-input>
+                                        <cds-text-input label="Link Restauro Pannelli"
+                                            id="artivisive_restauro_pannelli_path"
+                                            name="artivisive_restauro_pannelli_path"
+                                            placeholder="Solo per Restauro"></cds-text-input>
+                                    </div>
+                                    <div style="margin-top:1rem;">
+                                        <cds-textarea label="Elenco Copyright / SIAE" id="arti_visive_elenco_copyright"
+                                            name="arti_visive_elenco_copyright" rows="4"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- TEATRO RECITAZIONE -->
+                                <div class="dynamic-section" data-field-group="teatro_recitazione" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Recitazione</h4>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <cds-select label-text="Tipo" id="teatro_recitazione_tipo"
+                                            name="teatro_recitazione_tipo">
+                                            <cds-select-item value="Monologo">Monologo (max 4 min)</cds-select-item>
+                                            <cds-select-item value="Dialogo">Dialogo (max 5 min)</cds-select-item>
+                                        </cds-select>
+                                        <cds-text-input label="Testo di provenienza"
+                                            id="teatro_recitazione_testo_titolo"
+                                            name="teatro_recitazione_testo_titolo"></cds-text-input>
+                                        <cds-text-input label="Link CV" id="teatro_recitazione_cv_path"
+                                            name="teatro_recitazione_cv_path"></cds-text-input>
+                                        <cds-text-input label="Link Foto 1 (Primo piano)"
+                                            id="teatro_recitazione_foto1_path"
+                                            name="teatro_recitazione_foto1_path"></cds-text-input>
+                                        <cds-text-input label="Link Foto 2 (Intera)" id="teatro_recitazione_foto2_path"
+                                            name="teatro_recitazione_foto2_path"></cds-text-input>
+                                        <cds-text-input label="Spalla Nome (se dialogo)"
+                                            id="teatro_recitazione_dialogo_spalla_nome"
+                                            name="teatro_recitazione_dialogo_spalla_nome"></cds-text-input>
+                                        <cds-text-input label="Spalla Cognome (se dialogo)"
+                                            id="teatro_recitazione_dialogo_spalla_cognome"
+                                            name="teatro_recitazione_dialogo_spalla_cognome"></cds-text-input>
+                                    </div>
+                                </div>
+
+                                <!-- TEATRO REGIA -->
+                                <div class="dynamic-section" data-field-group="teatro_regia" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Regia</h4>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <cds-text-input label="Link CV (PDF)" id="teatro_regia_cv_path"
+                                            name="teatro_regia_cv_path"></cds-text-input>
+                                        <cds-text-input label="Link Piano Regia (PDF)" id="teatro_regia_pianoregia_path"
+                                            name="teatro_regia_pianoregia_path"></cds-text-input>
+                                        <cds-text-input label="Link Budget" id="teatro_regia_budget_path"
+                                            name="teatro_regia_budget_path"></cds-text-input>
+                                        <cds-text-input label="Link Video Scena" id="teatro_regia_videopath"
+                                            name="teatro_regia_videopath"></cds-text-input>
+                                        <cds-text-input label="Interprete 1 (Nome/Cognome)"
+                                            id="teatro_regia_interprete1_nome"
+                                            name="teatro_regia_interprete1_nome"></cds-text-input>
+                                        <cds-text-input label="Interprete 2 (Nome/Cognome)"
+                                            id="teatro_regia_interprete2_nome"
+                                            name="teatro_regia_interprete2_nome"></cds-text-input>
+                                    </div>
+                                </div>
+
+                                <!-- TEATRO DRAMMATURGIA -->
+                                <div class="dynamic-section" data-field-group="teatro_drammaturgia" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Drammaturgia</h4>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <cds-text-input label="Link CV (PDF)" id="teatro_drammaturgia_cv_path"
+                                            name="teatro_drammaturgia_cv_path"></cds-text-input>
+                                        <cds-select label-text="Sottosezione" id="teatro_drammaturgia_sottosezione"
+                                            name="teatro_drammaturgia_sottosezione">
+                                            <cds-select-item value="Miglior drammaturgia">Miglior
+                                                drammaturgia</cds-select-item>
+                                            <cds-select-item value="Testo comico">Testo comico (Premio Anna
+                                                Marchesini)</cds-select-item>
+                                        </cds-select>
+                                        <cds-text-input label="Link Testo (PDF)" id="teatro_drammaturgia_testo_pdf"
+                                            name="teatro_drammaturgia_testo_pdf"></cds-text-input>
+                                        <cds-text-input label="Link Video Scena"
+                                            id="teatro_drammaturgia_videoscena_path"
+                                            name="teatro_drammaturgia_videoscena_path"></cds-text-input>
+                                    </div>
+                                    <div style="margin-top:1rem;">
+                                        <cds-textarea label="Sinossi" id="teatro_drammaturgia_sinossi"
+                                            name="teatro_drammaturgia_sinossi" rows="4"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- DANZA CLASSICA -->
+                                <div class="dynamic-section" data-field-group="danza_classica" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Danza Classica</h4>
+                                    <p class="data-label">Variazione 1</p>
+                                    <div
+                                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                        <cds-text-input label="Titolo" id="danza_classica_var1_titolo"
+                                            name="danza_classica_var1_titolo"></cds-text-input>
+                                        <cds-text-input label="Coreografia" id="danza_classica_var1_coreografia"
+                                            name="danza_classica_var1_coreografia"></cds-text-input>
+                                        <cds-text-input label="Musica" id="danza_classica_var1_musica"
+                                            name="danza_classica_var1_musica"></cds-text-input>
+                                        <cds-text-input label="Durata" id="danza_classica_var1_durata"
+                                            name="danza_classica_var1_durata"></cds-text-input>
+                                    </div>
+                                    <p class="data-label">Variazione 2</p>
+                                    <div
+                                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                        <cds-text-input label="Titolo" id="danza_classica_var2_titolo"
+                                            name="danza_classica_var2_titolo"></cds-text-input>
+                                        <cds-text-input label="Coreografia" id="danza_classica_var2_coreografia"
+                                            name="danza_classica_var2_coreografia"></cds-text-input>
+                                    </div>
+                                </div>
+
+                                <!-- DANZA CONTEMPORANEA -->
+                                <div class="dynamic-section" data-field-group="danza_contemporanea" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Danza Contemporanea</h4>
+                                    <p class="data-label">Brano 1</p>
+                                    <div
+                                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                        <cds-text-input label="Titolo" id="danza_contemporanea_brano1_titolo"
+                                            name="danza_contemporanea_brano1_titolo"></cds-text-input>
+                                        <cds-text-input label="Durata" id="danza_contemporanea_brano1_durata"
+                                            name="danza_contemporanea_brano1_durata"></cds-text-input>
+                                        <cds-text-input label="Partner Nome"
+                                            id="danza_contemporanea_brano1_partner_nome"
+                                            name="danza_contemporanea_brano1_partner_nome"></cds-text-input>
+                                        <cds-text-input label="Partner Cognome"
+                                            id="danza_contemporanea_brano1_partner_cognome"
+                                            name="danza_contemporanea_brano1_partner_cognome"></cds-text-input>
+                                        <cds-checkbox label-text="Partner in competizione?"
+                                            id="danza_contemporanea_brano1_competizione"
+                                            name="danza_contemporanea_brano1_competizione"></cds-checkbox>
+                                    </div>
+                                    <p class="data-label">Brano 2</p>
+                                    <div
+                                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                        <cds-text-input label="Titolo" id="danza_contemporanea_brano2_titolo"
+                                            name="danza_contemporanea_brano2_titolo"></cds-text-input>
+                                        <cds-text-input label="Coreografia" id="danza_contemporanea_brano2_coreografia"
+                                            name="danza_contemporanea_brano2_coreografia"></cds-text-input>
+                                    </div>
+                                </div>
+
+                                <!-- DANZA COREOGRAFIA -->
+                                <div class="dynamic-section" data-field-group="danza_coreografia" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Coreografia</h4>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <cds-text-input label="Link Video (MP4)" id="danza_coreografia_video_path"
+                                            name="danza_coreografia_video_path"></cds-text-input>
+                                        <cds-text-input label="Num Danzatori" id="danza_coreografia_num_danzatori"
+                                            name="danza_coreografia_num_danzatori" type="number"
+                                            max="4"></cds-text-input>
+                                        <cds-text-input label="Musica" id="danza_coreografia_musica"
+                                            name="danza_coreografia_musica"></cds-text-input>
+                                        <cds-text-input label="Durata (Max 5:00)" id="danza_coreografia_durata"
+                                            name="danza_coreografia_durata"></cds-text-input>
+                                    </div>
+                                    <div style="margin-top:1rem;">
+                                        <cds-textarea label="Oggetti di scena (Scheda Tecnica)"
+                                            id="danza_coreografia_oggetti_scena" name="danza_coreografia_oggetti_scena"
+                                            rows="3"></cds-textarea>
+                                        <cds-textarea label="Sinossi e Note" id="danza_coreografia_sinossi"
+                                            name="danza_coreografia_sinossi" rows="3"
+                                            style="margin-top:1rem;"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA COMPOSIZIONE -->
+                                <div class="dynamic-section" data-field-group="musica_composizione" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Composizione</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Motto Identificativo (Anonimato)"
+                                            id="musica_composizione_motto"
+                                            name="musica_composizione_motto"></cds-text-input>
+                                        <cds-text-input label="Link Drive (Partitura e Parti)"
+                                            id="musica_composizione_link_drive"
+                                            name="musica_composizione_link_drive"></cds-text-input>
+                                        <cds-checkbox label-text="Richiesta Pianista Accompagnatore?"
+                                            id="musica_composizione_pianista"
+                                            name="musica_composizione_pianista"></cds-checkbox>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA FISARMONICA -->
+                                <div class="dynamic-section" data-field-group="musica_fisarmonica" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Fisarmonica</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-textarea label="Programma Eliminatoria (Max 25 min)"
+                                            id="musica_fisarmonica_prog_eliminatoria"
+                                            name="musica_fisarmonica_prog_eliminatoria" rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale (25-35 min)"
+                                            id="musica_fisarmonica_prog_finale" name="musica_fisarmonica_prog_finale"
+                                            rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA ANTICA -->
+                                <div class="dynamic-section" data-field-group="musica_antica" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Musica Antica</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Sottosezione Specifica (Canto, Strumento...)"
+                                            id="musica_antica_sottosezione"
+                                            name="musica_antica_sottosezione"></cds-text-input>
+                                        <cds-textarea label="Programma Eliminatoria (20 min)"
+                                            id="musica_antica_prog_eliminatoria" name="musica_antica_prog_eliminatoria"
+                                            rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale (20 min)" id="musica_antica_prog_finale"
+                                            name="musica_antica_prog_finale" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA ORGANO -->
+                                <div class="dynamic-section" data-field-group="musica_organo" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Organo</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-checkbox label-text="Richiesta Registrante/Voltapagine?"
+                                            id="musica_organo_registrante_richiesto"
+                                            name="musica_organo_registrante_richiesto"></cds-checkbox>
+                                        <cds-textarea label="Programma Eliminatoria (12-20 min)"
+                                            id="musica_organo_prog_eliminatoria" name="musica_organo_prog_eliminatoria"
+                                            rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale (30-40 min)"
+                                            id="musica_organo_prog_finale" name="musica_organo_prog_finale"
+                                            rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA JAZZ -->
+                                <div class="dynamic-section" data-field-group="musica_jazz" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Jazz</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Link Preselezione (Video)"
+                                            id="musica_jazz_link_preselezione"
+                                            name="musica_jazz_link_preselezione"></cds-text-input>
+                                        <cds-textarea label="Programma Semifinale (Max 30 min)"
+                                            id="musica_jazz_prog_semifinale" name="musica_jazz_prog_semifinale"
+                                            rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale (Max 40 min)" id="musica_jazz_prog_finale"
+                                            name="musica_jazz_prog_finale" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA DA CAMERA -->
+                                <div class="dynamic-section" data-field-group="musica_da_camera" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Musica da Camera</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-checkbox label-text="Richiesta Pianista?"
+                                            id="musica_camera_pianista_richiesto"
+                                            name="musica_camera_pianista_richiesto"></cds-checkbox>
+                                        <cds-text-input label="Link Preselezione (10-15 min)"
+                                            id="musica_camera_link_preselezione"
+                                            name="musica_camera_link_preselezione"></cds-text-input>
+                                        <cds-textarea label="Programma Finale (Max 30 min)"
+                                            id="musica_camera_prog_finale" name="musica_camera_prog_finale"
+                                            rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA LEGNI -->
+                                <div class="dynamic-section" data-field-group="musica_legni" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Legni</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Strumento" id="musica_legni_strumento"
+                                            name="musica_legni_strumento"
+                                            placeholder="Flauto, Oboe..."></cds-text-input>
+                                        <cds-checkbox label-text="Richiesta Pianista?"
+                                            id="musica_legni_pianista_richiesto"
+                                            name="musica_legni_pianista_richiesto"></cds-checkbox>
+                                        <cds-textarea label="Programma Eliminatoria" id="musica_legni_prog_eliminatoria"
+                                            name="musica_legni_prog_eliminatoria" rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale" id="musica_legni_prog_finale"
+                                            name="musica_legni_prog_finale" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA PIANOFORTE -->
+                                <div class="dynamic-section" data-field-group="musica_pianoforte" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Pianoforte</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Link Eliminatoria (Max 10 min)"
+                                            id="musica_pianoforte_link_eliminatoria"
+                                            name="musica_pianoforte_link_eliminatoria"></cds-text-input>
+                                        <cds-textarea label="Programma Semifinale (40 min)"
+                                            id="musica_pianoforte_prog_semifinale"
+                                            name="musica_pianoforte_prog_semifinale" rows="3"></cds-textarea>
+                                        <cds-text-input label="Concerto Finale" id="musica_pianoforte_prog_finale"
+                                            name="musica_pianoforte_prog_finale"></cds-text-input>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA PERCUSSIONI -->
+                                <div class="dynamic-section" data-field-group="musica_percussioni" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Percussioni</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Categoria (Solisti/Ensemble)"
+                                            id="musica_percussioni_categoria"
+                                            name="musica_percussioni_categoria"></cds-text-input>
+                                        <cds-checkbox label-text="Richiesta Pianista?"
+                                            id="musica_percussioni_pianista_richiesto"
+                                            name="musica_percussioni_pianista_richiesto"></cds-checkbox>
+                                        <cds-checkbox label-text="Uso Audio-Digitale?"
+                                            id="musica_percussioni_supporto_audio"
+                                            name="musica_percussioni_supporto_audio"></cds-checkbox>
+                                        <cds-textarea label="Programma Eliminatoria (Max 20 min)"
+                                            id="musica_percussioni_prog_eliminatoria"
+                                            name="musica_percussioni_prog_eliminatoria" rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale (20-25 min)"
+                                            id="musica_percussioni_prog_finale" name="musica_percussioni_prog_finale"
+                                            rows="3"></cds-textarea>
+                                        <cds-textarea label="Elenco Strumenti" id="musica_percussioni_elenco_strumenti"
+                                            name="musica_percussioni_elenco_strumenti" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA OTTONI -->
+                                <div class="dynamic-section" data-field-group="musica_ottoni" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Ottoni</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Strumento" id="musica_ottoni_strumento"
+                                            name="musica_ottoni_strumento"></cds-text-input>
+                                        <cds-checkbox label-text="Richiesta Pianista?"
+                                            id="musica_ottoni_pianista_richiesto"
+                                            name="musica_ottoni_pianista_richiesto"></cds-checkbox>
+                                        <cds-text-input label="Link Video Programma Libero"
+                                            id="musica_ottoni_link_video"
+                                            name="musica_ottoni_link_video"></cds-text-input>
+                                        <cds-textarea label="Programma Semifinale" id="musica_ottoni_prog_semifinale"
+                                            name="musica_ottoni_prog_semifinale" rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale" id="musica_ottoni_prog_finale"
+                                            name="musica_ottoni_prog_finale" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA VIOLINO VIOLA -->
+                                <div class="dynamic-section" data-field-group="musica_violino_viola" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Violino / Viola</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Strumento (Violino/Viola)" id="musica_archi_strumento"
+                                            name="musica_archi_strumento"></cds-text-input>
+                                        <cds-text-input label="Link Preselezione" id="musica_archi_link_preselezione"
+                                            name="musica_archi_link_preselezione"></cds-text-input>
+                                        <cds-textarea label="Programma Semifinale" id="musica_archi_prog_semifinale"
+                                            name="musica_archi_prog_semifinale" rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale" id="musica_archi_prog_finale"
+                                            name="musica_archi_prog_finale" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA ELETTRONICA -->
+                                <div class="dynamic-section" data-field-group="musica_elettronica" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Musica Elettronica</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Categoria (A, B, C, D)" id="musica_elettronica_categoria"
+                                            name="musica_elettronica_categoria"></cds-text-input>
+                                        <cds-textarea label="Descrizione / Durata" id="musica_elettronica_descrizione"
+                                            name="musica_elettronica_descrizione" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA POP ROCK -->
+                                <div class="dynamic-section" data-field-group="musica_pop_rock" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Pop / Rock</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-checkbox label-text="Richiesta Pianista?"
+                                            id="musica_poprock_pianista_richiesto"
+                                            name="musica_poprock_pianista_richiesto"></cds-checkbox>
+                                        <cds-text-input label="Link Semifinale (Video Cover)"
+                                            id="musica_poprock_link_semifinale"
+                                            name="musica_poprock_link_semifinale"></cds-text-input>
+                                        <cds-text-input label="Link Finale (Brano Originale)"
+                                            id="musica_poprock_link_finale"
+                                            name="musica_poprock_link_finale"></cds-text-input>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA CELLO CONTRABBASSO -->
+                                <div class="dynamic-section" data-field-group="musica_velocello_contrabbasso" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Violoncello / Contrabbasso</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Strumento" id="musica_bassi_strumento"
+                                            name="musica_bassi_strumento"></cds-text-input>
+                                        <cds-checkbox label-text="Richiesta Pianista?"
+                                            id="musica_bassi_pianista_richiesto"
+                                            name="musica_bassi_pianista_richiesto"></cds-checkbox>
+                                        <cds-textarea label="Programma Eliminatoria" id="musica_bassi_prog_eliminatoria"
+                                            name="musica_bassi_prog_eliminatoria" rows="3"></cds-textarea>
+                                        <cds-textarea label="Programma Finale" id="musica_bassi_prog_finale"
+                                            name="musica_bassi_prog_finale" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                                <!-- MUSICA DIREZIONE ORCHESTRA -->
+                                <div class="dynamic-section" data-field-group="musica_direzione_orchestra" hidden>
+                                    <h4 style="margin-bottom: 1rem;">Dettagli Direzione Orchestra</h4>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Link Eliminatoria (Video)"
+                                            id="musica_direzione_link_eliminatoria"
+                                            name="musica_direzione_link_eliminatoria"></cds-text-input>
+                                        <cds-textarea label="Repertorio Fasi Successive"
+                                            id="musica_direzione_repertorio_fasi_succ"
+                                            name="musica_direzione_repertorio_fasi_succ" rows="3"></cds-textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Classificazione Tags -->
+                            <h4 style="margin: 2rem 0 1rem 0;">Classificazione Tags</h4>
+                            <p style="margin-bottom: 1rem; font-size: 0.875rem;">Aggiungi tag per classificare il tuo
+                                progetto. Puoi sceglierne dalla lista o crearne di nuovi.</p>
+
+                            <div style="display: flex; gap: 1rem; align-items: flex-end; margin-bottom: 1rem;">
+                                <div style="flex-grow: 1;">
+                                    <cds-text-input label="Aggiungi Tag" id="tag_input"
+                                        placeholder="Es. Sostenibilità..." list="tag_suggestions"
+                                        autocomplete="off"></cds-text-input>
+                                    <datalist id="tag_suggestions">
+                                        <!-- Populated via JS -->
+                                    </datalist>
+                                </div>
+                                <cds-button kind="tertiary" id="btn_add_tag" type="button">Aggiungi</cds-button>
+                            </div>
+
+                            <div id="tags_container"
+                                style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; min-height: 2rem;">
+                                <!-- Chips populate here -->
+                            </div>
+
+                            <!-- Hidden input to store actual value -->
+                            <input type="hidden" id="tags" name="tags" value="">
+
+
+
+                            <!-- Media (Video) -->
+                            <h4 style="margin: 2rem 0 1rem 0;">Media (Video)</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                <cds-text-input label="Link Video (URL)" id="url_video" name="url_video"
+                                    placeholder="https://..."></cds-text-input>
+                                <cds-text-input label="Path Video (MP4)" id="path_video" name="path_video"
+                                    placeholder="/uploads/video.mp4"></cds-text-input>
+                            </div>
+
+                            <!-- Relazioni (Studenti e Docenti) -->
+                            <h4 style="margin: 2rem 0 1rem 0;">Relazioni</h4>
+
+                            <!-- STUDENTI -->
+                            <div class="relation-block">
+                                <h5 style="margin-bottom: 0.5rem;">Studenti (Co-Autori)</h5>
+                                <p style="font-size: 0.875rem; margin-bottom: 1rem; color: #525252;">Cerca e aggiungi
+                                    altri studenti che hanno partecipato al progetto.</p>
+
+                                <!-- Search & Add -->
+                                <div style="display: flex; gap: 1rem; align-items: flex-end; margin-bottom: 1rem;">
+                                    <div style="flex-grow: 1;">
+                                        <cds-search id="search_studenti"
+                                            placeholder="Cerca studente per nome o email..." label-text="Cerca Studente"
+                                            autocomplete="off"></cds-search>
+                                    </div>
+                                    <cds-button kind="tertiary" id="btn_open_modal_studente" type="button">Crea
+                                        Nuovo</cds-button>
+                                </div>
+                                <div id="search_results_studenti"
+                                    style="margin-bottom: 1rem; border: 1px solid #e0e0e0; display: none; padding: 0.5rem;">
+                                </div>
+
+                                <!-- Table -->
+                                <cds-table>
+                                    <cds-table-head>
+                                        <cds-table-header-row>
+                                            <cds-table-header-cell>Nome</cds-table-header-cell>
+                                            <cds-table-header-cell>Cognome</cds-table-header-cell>
+                                            <cds-table-header-cell>Email</cds-table-header-cell>
+                                            <cds-table-header-cell>Azioni</cds-table-header-cell>
+                                        </cds-table-header-row>
+                                    </cds-table-head>
+                                    <cds-table-body id="table_studenti_body">
+                                        <!-- Rows populate here -->
+                                    </cds-table-body>
+                                </cds-table>
+                                <p id="msg_empty_studenti"
+                                    style="color: #525252; margin-top: 1rem; font-style: italic;">Nessuno studente
+                                    aggiunto</p>
+                            </div>
+
+                            <!-- DOCENTI -->
+                            <div class="relation-block">
+                                <h5 style="margin-bottom: 0.5rem;">Docenti (Tutor)</h5>
+                                <p style="font-size: 0.875rem; margin-bottom: 1rem; color: #525252;">Associa i docenti o
+                                    tutor del progetto.</p>
+
+                                <!-- Search & Add -->
+                                <div style="display: flex; gap: 1rem; align-items: flex-end; margin-bottom: 1rem;">
+                                    <div style="flex-grow: 1;">
+                                        <cds-search id="search_docenti" placeholder="Cerca docente per nome o email..."
+                                            label-text="Cerca Docente" autocomplete="off"></cds-search>
+                                    </div>
+                                    <cds-button kind="tertiary" id="btn_open_modal_docente" type="button">Crea
+                                        Nuovo</cds-button>
+                                </div>
+                                <div id="search_results_docenti"
+                                    style="margin-bottom: 1rem; border: 1px solid #e0e0e0; display: none; padding: 0.5rem;">
+                                </div>
+
+                                <!-- Table -->
+                                <cds-table>
+                                    <cds-table-head>
+                                        <cds-table-header-row>
+                                            <cds-table-header-cell>Nome</cds-table-header-cell>
+                                            <cds-table-header-cell>Cognome</cds-table-header-cell>
+                                            <cds-table-header-cell>Email</cds-table-header-cell>
+                                            <cds-table-header-cell>Azioni</cds-table-header-cell>
+                                        </cds-table-header-row>
+                                    </cds-table-head>
+                                    <cds-table-body id="table_docenti_body">
+                                        <!-- Rows populate here -->
+                                    </cds-table-body>
+                                </cds-table>
+                                <p id="msg_empty_docenti" style="color: #525252; margin-top: 1rem; font-style: italic;">
+                                    Nessun docente aggiunto</p>
+                            </div>
+
+                            <!-- PERFORMER -->
+                            <div class="relation-block">
+                                <h5 style="margin-bottom: 0.5rem;">Performers</h5>
+                                <p style="font-size: 0.875rem; margin-bottom: 1rem; color: #525252;">Associa eventuali
+                                    performers esterni (non studenti/docenti).</p>
+
+                                <!-- Search & Add -->
+                                <div style="display: flex; gap: 1rem; align-items: flex-end; margin-bottom: 1rem;">
+                                    <div style="flex-grow: 1;">
+                                        <cds-search id="search_performers" placeholder="Cerca performer per nome..."
+                                            label-text="Cerca Performer" autocomplete="off"></cds-search>
+                                    </div>
+                                    <cds-button kind="tertiary" id="btn_open_modal_performer" type="button">Crea
+                                        Nuovo</cds-button>
+                                </div>
+                                <div id="search_results_performers"
+                                    style="margin-bottom: 1rem; border: 1px solid #e0e0e0; display: none; padding: 0.5rem;">
+                                </div>
+
+                                <!-- Table -->
+                                <cds-table>
+                                    <cds-table-head>
+                                        <cds-table-header-row>
+                                            <cds-table-header-cell>Nome</cds-table-header-cell>
+                                            <cds-table-header-cell>Cognome</cds-table-header-cell>
+                                            <cds-table-header-cell>Azioni</cds-table-header-cell>
+                                        </cds-table-header-row>
+                                    </cds-table-head>
+                                    <cds-table-body id="table_performers_body">
+                                        <!-- Rows populate here -->
+                                    </cds-table-body>
+                                </cds-table>
+                                <p id="msg_empty_performers"
+                                    style="color: #525252; margin-top: 1rem; font-style: italic;">Nessun performer
+                                    aggiunto</p>
+                            </div>
+
+
+
+
+                            <!-- MODALS -->
+                            <cds-modal id="modal_studente" aria-label="Aggiungi Nuovo Studente">
+                                <cds-modal-header>
+                                    <cds-modal-heading>Aggiungi Nuovo Studente</cds-modal-heading>
+                                </cds-modal-header>
+                                <cds-modal-body>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Nome" id="new_studente_nome"
+                                            autocomplete="given-name"></cds-text-input>
+                                        <cds-text-input label="Cognome" id="new_studente_cognome"
+                                            autocomplete="family-name"></cds-text-input>
+                                        <cds-text-input label="Email" id="new_studente_email"
+                                            autocomplete="email"></cds-text-input>
+                                    </div>
+                                </cds-modal-body>
+                                <cds-modal-footer>
+                                    <cds-modal-footer-button kind="secondary"
+                                        data-modal-close>Annulla</cds-modal-footer-button>
+                                    <cds-modal-footer-button kind="primary"
+                                        id="btn_save_studente">Aggiungi</cds-modal-footer-button>
+                                </cds-modal-footer>
+                            </cds-modal>
+
+                            <cds-modal id="modal_docente" aria-label="Aggiungi Nuovo Docente">
+                                <cds-modal-header>
+                                    <cds-modal-heading>Aggiungi Nuovo Docente</cds-modal-heading>
+                                </cds-modal-header>
+                                <cds-modal-body>
+                                    <div style="display: grid; gap: 1rem;">
+                                        <cds-text-input label="Nome" id="new_docente_nome"
+                                            autocomplete="given-name"></cds-text-input>
+                                        <cds-text-input label="Cognome" id="new_docente_cognome"
+                                            autocomplete="family-name"></cds-text-input>
+                                        <cds-text-input label="Email" id="new_docente_email"
+                                            autocomplete="email"></cds-text-input>
+                                    </div>
+                                </cds-modal-body>
+
+                                <cds-modal-footer>
+                                    <cds-modal-footer-button kind="secondary"
+                                        data-modal-close>Annulla</cds-modal-footer-button>
+                                    <cds-modal-footer-button kind="primary"
+                                        id="btn_save_docente">Aggiungi</cds-modal-footer-button>
+                                </cds-modal-footer>
+                            </cds-modal>
+
+                            <!-- Terms -->
+                            <div style="margin: 2rem 0;">
+                                <cds-checkbox label-text="Accetto il regolamento del bando" id="accetto_regolamento"
+                                    required></cds-checkbox>
+                            </div>
+
+                            <!-- Submit -->
+                            <cds-button type="submit" style="width: 100%;">Invia Candidatura</cds-button>
+
+                        </form>
+                    </div>
+                </cds-tile>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script src="assets/script.js"></script>
+
+</body>
+
+</html>

@@ -199,3 +199,91 @@ cds-dropdown::part(button) {
     margin: 0 auto;
     /* Wireframe box for form */
 }
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dashboard Tiles */
+cds-tile {
+    margin-bottom: 1rem;
+    background: white;
+    border: 1px solid black;
+    display: block;
+    /* Ensure block display */
+}
+
+/* Data Display */
+.data-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 0.25rem;
+}
+
+.data-value {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+/* RELATION BLOCKS */
+.relation-block {
+    border: 1px solid var(--cds-ui-04);
+    /* Carbon variable for border */
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    /* Slight rounding for better UI */
+    background-color: #ffffff;
+}
+
+/* MODAL OVERRIDES */
+cds-modal {
+    --cds-ui-01: #ffffff;
+    --cds-layer: #ffffff;
+    --cds-layer-01: #ffffff;
+    --cds-background-01: #ffffff;
+}
+
+/* Ensure modal container is white if it uses shadow parts */
+cds-modal::part(dialog) {
+    background-color: #ffffff !important;
+    border: 1px solid #000000;
+    /* Wireframe border */
+}
+
+/* TABLE BORDERS - HIGH CONTRAST */
+cds-table {
+    --cds-border-subtle: #000000;
+    --cds-border-strong: #000000;
+}
+
+cds-table-header-cell,
+cds-table-cell {
+    border: 1px solid #000000 !important;
+    /* border-bottom: 1px solid #000000 !important; */
+}
+
+/* cds-table-header-cell:last-child,
+cds-table-cell:last-child {
+    border-right: none !important;
+} */
+
+/* Ensure header has a strong bottom border */
+cds-table-header-row cds-table-header-cell {
+    border-bottom: 2px solid #000000 !important;
+    font-weight: 700;
+}

@@ -14,39 +14,7 @@
 
     <!-- Dashboard Specific Styles -->
     <style>
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        cds-tile {
-            margin-bottom: 1rem;
-            background: white;
-            border: 1px solid black;
-        }
-
-        .data-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #555;
-            margin-bottom: 0.25rem;
-        }
-
-        .data-value {
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.5rem;
-        }
+        /* Styles moved to assets/style.css */
     </style>
 </head>
 
@@ -77,9 +45,10 @@
                 <cds-tile>
                     <h3 style="margin-top:0;">Azioni Rapide</h3>
                     <p style="margin-bottom: 1rem;">Benvenuto nella tua area riservata.</p>
-                    <cds-button href="candidatura.html" style="width: 100%; margin-bottom: 0.5rem;">Nuova
+                    <cds-button href="studente-candidatura.html" style="width: 100%; margin-bottom: 0.5rem;">Nuova
                         Candidatura</cds-button>
-                    <cds-button kind="secondary" href="profilo.html" style="width: 100%;">Modifica Profilo</cds-button>
+                    <cds-button kind="secondary" href="studente-profilo.html" style="width: 100%;">Modifica
+                        Profilo</cds-button>
                     <cds-button kind="danger" id="logoutBtn" style="width: 100%; margin-top: 1rem;">Esci</cds-button>
                 </cds-tile>
             </div>

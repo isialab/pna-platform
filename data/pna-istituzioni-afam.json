@@ -1460,7 +1460,7 @@
     },
     {
         "id": "sae-institute-creative-media-education",
-        "tipologia_istituto": "Altri Istituti",
+        "tipologia_istituto": "Istituti di Design, Moda e Belle Arti",
         "istituto": "SAE Institute. Creative media education",
         "citta": "Milano",
         "sede": "Principale",
@@ -1928,7 +1928,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-brescia-sez-darfo-boario-terme",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Brescia (Sez. Darfo Boario Terme)",
         "citta": "Brescia",
         "sede": "Principale",
@@ -1976,7 +1976,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-perugia",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Perugia",
         "citta": "Perugia",
         "sede": "Principale",
@@ -1988,7 +1988,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-foggia-sez-rodi-garganico",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Foggia (Sez. Rodi Garganico)",
         "citta": "Foggia",
         "sede": "Principale",
@@ -2000,7 +2000,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-milano",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Milano",
         "citta": "Milano",
         "sede": "Principale",
@@ -2036,7 +2036,7 @@
     },
     {
         "id": "conservatorio-di-musica-davellino",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica D'Avellino",
         "citta": "Avellino",
         "sede": "Principale",
@@ -2048,7 +2048,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-trento-sez-riva-del-garda",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Trento (Sez. Riva Del Garda)",
         "citta": "Trento",
         "sede": "Principale",
@@ -2060,7 +2060,7 @@
     },
     {
         "id": "conservatorio-di-musica-dalessandria",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica D'Alessandria",
         "citta": "Alessandria",
         "sede": "Principale",
@@ -2072,7 +2072,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-palermo",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Palermo",
         "citta": "Palermo",
         "sede": "Principale",
@@ -2300,7 +2300,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-lecce-sez-ceglie-messapica",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Lecce (Sez. Ceglie Messapica)",
         "citta": "Ceglie Messapica",
         "sede": "Principale",
@@ -2372,7 +2372,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-udine",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Udine",
         "citta": "Udine",
         "sede": "Principale",
@@ -2444,7 +2444,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-lecce",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Lecce",
         "citta": "Lecce",
         "sede": "Principale",
@@ -2516,7 +2516,7 @@
     },
     {
         "id": "conservatorio-di-musica-dadria",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica D'Adria",
         "citta": "Rovigo",
         "sede": "Principale",
@@ -2528,7 +2528,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-bolzano-sez-tedesca",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Bolzano (Sez. Tedesca)",
         "citta": "Bolzano",
         "sede": "Principale",
@@ -2540,7 +2540,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-como",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Como",
         "citta": "Como",
         "sede": "Principale",
@@ -2552,7 +2552,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-fermo",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Fermo",
         "citta": "Fermo",
         "sede": "Principale",
@@ -2564,7 +2564,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-frosinone",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Frosinone",
         "citta": "Frosinone",
         "sede": "Principale",
@@ -2576,7 +2576,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-genova",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Genova",
         "citta": "Genova",
         "sede": "Principale",
@@ -2588,7 +2588,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-torino",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Torino",
         "citta": "Torino",
         "sede": "Principale",
@@ -2600,7 +2600,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-verona",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Verona",
         "citta": "Verona",
         "sede": "Principale",
@@ -2636,7 +2636,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-parma",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Parma",
         "citta": "Parma",
         "sede": "Principale",
@@ -2672,7 +2672,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-ravenna",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Ravenna",
         "citta": "Ravenna",
         "sede": "Principale",
@@ -2684,7 +2684,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-siena",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Siena",
         "citta": "Siena",
         "sede": "Principale",
@@ -2696,7 +2696,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-terni",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Terni",
         "citta": "Terni",
         "sede": "Principale",
@@ -2708,7 +2708,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-modena-e-carpi",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Modena E Carpi",
         "citta": "Modena",
         "sede": "Principale",
@@ -2720,7 +2720,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-lucca",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Lucca",
         "citta": "Lucca",
         "sede": "Principale",
@@ -2744,7 +2744,7 @@
     },
     {
         "id": "conservatorio-di-musica-di-pavia",
-        "tipologia_istituto": "Conservatori di Musica",
+        "tipologia_istituto": "Conservatori di Musica e ISSM",
         "istituto": "Conservatorio Di Musica Di Pavia",
         "citta": "Pavia",
         "sede": "Principale",
@@ -2756,7 +2756,7 @@
     },
     {
         "id": "istituto-superiore-per-le-industrie-artistiche-sede-decentrata-dellisia-di-roma",
-        "tipologia_istituto": "ISIA",
+        "tipologia_istituto": "ISIA - Istituti Superiori per le Industrie Artistiche",
         "istituto": "Istituto Superiore Per Le Industrie Artistiche (Sede Decentrata Dell'Isia Di Roma)",
         "citta": "Pordenone",
         "sede": "Principale",

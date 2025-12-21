@@ -109,7 +109,7 @@
                 <!-- Academic Data -->
                 <div>
                     <label for="tipologia_istituzione" class="form-label">Tipologia Istituzione</label>
-                    <cds-select id="tipologia_istituzione" required>
+                    <cds-select id="tipologia_istituzione" name="tipologia_istituzione" required>
                         <cds-select-item value="" disabled selected>Seleziona Tipologia...</cds-select-item>
                         <!-- JS will populate -->
                     </cds-select>
@@ -117,16 +117,44 @@
 
                 <div style="margin-top: 1rem;">
                     <label for="istituzione" class="form-label">Istituzione</label>
-                    <cds-select id="istituzione" disabled required>
+                    <cds-select id="istituzione" name="istituzione" disabled required>
                         <cds-select-item value="" disabled selected>Prima seleziona la tipologia...</cds-select-item>
                         <!-- JS will populate -->
                     </cds-select>
                 </div>
 
                 <div style="margin-top: 1rem;">
+                    <label for="corso_denominazione" class="form-label">Denominazione Corso</label>
+                    <cds-text-input placeholder="Es. Pittura, Design del Prodotto..." id="corso_denominazione"
+                        name="corso_denominazione" required></cds-text-input>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                    <div>
+                        <label for="corso_livello" class="form-label">Livello Corso</label>
+                        <cds-select id="corso_livello" name="corso_livello" required>
+                            <cds-select-item value="" disabled selected>Seleziona...</cds-select-item>
+                            <cds-select-item value="I livello">Triennio (I Livello)</cds-select-item>
+                            <cds-select-item value="II livello">Biennio (II Livello)</cds-select-item>
+                            <cds-select-item value="Ciclo Unico">Ciclo Unico</cds-select-item>
+                        </cds-select>
+                    </div>
+                    <div>
+                        <label for="corso_anno" class="form-label">Anno di Corso</label>
+                        <cds-select id="corso_anno" name="corso_anno" required>
+                            <cds-select-item value="" disabled selected>Seleziona...</cds-select-item>
+                            <cds-select-item value="1">1° Anno</cds-select-item>
+                            <cds-select-item value="2">2° Anno</cds-select-item>
+                            <cds-select-item value="3">3° Anno</cds-select-item>
+                            <cds-select-item value="fuori_corso">Fuori Corso</cds-select-item>
+                        </cds-select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1rem;">
                     <label for="anno_accademico" class="form-label">Anno Accademico</label>
-                    <cds-text-input placeholder="2024/2025" id="anno_accademico" name="anno_accademico"
-                        required></cds-text-input>
+                    <cds-text-input value="2024/2025" id="anno_accademico" name="anno_accademico"
+                        readonly></cds-text-input>
                 </div>
 
                 <!-- Actions -->
