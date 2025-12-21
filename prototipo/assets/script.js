@@ -862,7 +862,7 @@ function initProfileForm() {
 
         } else {
             alert("Nessun profilo trovato. Effettua il login.");
-            window.location.href = 'login.html';
+            window.location.href = 'studente-login.html';
         }
 
         const handleProfileUpdate = async (e) => {
@@ -1016,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', () => {
             logoutBtn.addEventListener('click', () => {
                 localStorage.removeItem('pna_user_profile');
                 localStorage.removeItem('pna_user_name');
-                window.location.href = 'login.html';
+                window.location.href = 'studente-login.html';
             });
         }
     }
@@ -1169,6 +1169,6 @@ function loadUserData() {
         // container.innerHTML = "<p>Nessun utente loggato. <a href='index.html'>Registrati</a></p>";
         // Per requirements: should redirect or show login
         // Let's redirect to login for "auth protection" feel
-        window.location.href = 'login.html';
+        window.location.href = 'studente-login.html';
     }
 }
