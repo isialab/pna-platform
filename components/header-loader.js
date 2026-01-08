@@ -19,7 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const subdirectories = ["/viz/", "/prototipo/", "/docs/", "/data/"];
 
     // Check if current path contains any of these
-    const isSubdirectory = subdirectories.some(subdir => pathname.includes(subdir));
+    // Use a more robust check that works if the URL ends with the directory name without trailing slash
+    const isSubdirectory = subdirectories.some(subdir => {
+        return pathname.includes(subdir) || pathname.endsWith(subdir.replace(/\/$/, ""));
+    });
 
     // If in subdirectory, we need to go up one level (../) to reach root resources
     const basePrefix = isSubdirectory ? "../" : "";
@@ -43,9 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 const originalHref = link.getAttribute("href");
                 if (originalHref) {
                     // Prepend prefix to all relative links
-                    // Ensure we don't double-fix absolute links (starts with http or /)
-                    if (!originalHref.startsWith("http") && !originalHref.startsWith("/")) {
-                        link.setAttribute("href", basePrefix + originalHref);
+                    // Skip absolute links (http...), root-relative links (/...), and already relative links (./ or ../)
+                    const isRelative = !originalHref.startsWith("http") &&
+                        !originalHref.startsWith("/") &&
+                        !originalHref.startsWith("./") &&
+                        !originalHref.startsWith("../");
+
+                    if (isRelative) {
+                        const newHref = basePrefix + originalHref;
+                        link.setAttribute("href", newHref);
+
+                        // Set active state if current pathname matches the link
+                        // Use a simple check: if pathname contains the original link's path
+                        if (pathname.includes(originalHref)) {
+                            link.setAttribute("active", "");
+                        }
                     }
                 }
             });

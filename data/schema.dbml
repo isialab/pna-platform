@@ -108,6 +108,14 @@ Table link_video [headercolor: #175e7a] {
 	url_video varchar(255) [ not null, note: 'URL completo (https://...)' ]
 }
 
+Table allegato [headercolor: #175e7a] {
+	id_allegato int [ pk, increment, unique ]
+	id_progetto int [ note: 'Collegato a un progetto' ]
+	id_edizione int [ note: 'Collegato a un\'edizione (es. bando, regolamento)' ]
+	nome varchar(255) [ not null, note: 'Nome del file o dell\'allegato' ]
+	url varchar(255) [ not null, note: 'URL completo o path dell\'allegato' ]
+}
+
 Table progetto_premio [headercolor: #175e7a] {
 	id_progetto_premio int [ pk, increment, unique ]
 	id_progetto int [ not null ]
@@ -488,6 +496,14 @@ Ref fk_progetto_id_progetto_video {
 
 Ref fk_progetto_id_progetto_link_video {
 	progetto.id_progetto < link_video.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_progetto_id_progetto_allegato {
+	progetto.id_progetto < allegato.id_progetto [ delete: no action, update: no action ]
+}
+
+Ref fk_edizione_id_edizione_allegato {
+	edizione.id_edizione < allegato.id_edizione [ delete: no action, update: no action ]
 }
 
 Ref fk_progetto_id_progetto_progetto_premio {
